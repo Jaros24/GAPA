@@ -1,49 +1,53 @@
 #!/bin/bash
 
+# set paths for ATTPCROOT and Automation scripts
+attpcroot_dir=/mnt/analysis/e17023/Adam/ATTPCROOTv2/
+automation_dir=/mnt/analysis/e17023/Adam/GADGET2/
+
 # start timer
 start=`date +%s`
 iterations=0
 
 # load prerequisites
-cd /mnt/analysis/e17023/Adam/ATTPCROOTv2/
+cd $attpcroot_dir
 source env_fishtank.sh
 module load fairroot/18.6.3
 
 while true; do
 	# modify parameters and rename old h5
-	cd /mnt/analysis/e17023/Adam/simInput/
+	cd $automation_dir"simInput/"
     echo "Modifying parameters"
 	python3 iter.py
 
-    if [ -f /mnt/analysis/e17023/Adam/STOP.csv ]; then
+    if [ -f $automation_dir"STOP.csv" ]; then
         # Delete STOP.csv and break loop
         echo "STOP.csv found, stopping Loop"
-        rm /mnt/analysis/e17023/Adam/STOP.csv
+        rm $automation_dir"STOP.csv"
         
         # zip output
-        zip -r /mnt/analysis/e17023/Adam/output.zip /mnt/analysis/e17023/Adam/simOutput/ /mnt/analysis/e17023/Adam/simInput/parameters.csv
+        #zip -r $automation_dir"output.zip" $automation_dir"simOutput/" $automation_dir"simInput/parameters.csv"
         break
     else
-        if [ -f /mnt/analysis/e17023/Adam/BUILD.csv ]; then
+        if [ -f $automation_dir"BUILD.csv" ]; then
             # Delete BUILD.csv
             echo "BUILD.csv found, rebuilding ATTPCROOT"
-            rm /mnt/analysis/e17023/Adam/BUILD.csv
+            rm $automation_dir"BUILD.csv"
 
             # build ATTPCROOT
-            cd /mnt/analysis/e17023/Adam/ATTPCROOTv2/build/
+            cd $attpcroot_dir"build/"
             make -j8
 
             # build ROOT2HDF
-            cd /mnt/analysis/e17023/Adam/ATTPCROOTv2/compiled/ROOT2HDF/build/
+            cd $attpcroot_dir"compiled/ROOT2HDF/build/"
             make
         fi
 
         # copy simulation files
-        rm /mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/Mg20_test_sim.C
-        cp /mnt/analysis/e17023/Adam/simInput/generators/Mg20_test_sim.txt /mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/Mg20_test_sim.C
+        rm $attpcroot_dir"macro/Simulation/GADGET/Mg20_test_sim.C"
+        cp $automation_dir"simInput/generators/Mg20_test_sim.txt" $attpcroot_dir"macro/Simulation/GADGET/Mg20_test_sim.C"
         
         # run simulation
-        cd /mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/
+        cd $attpcroot_dir"macro/Simulation/GADGET/"
         
         echo "Mg20_test_sim.C"
         nohup root -b -l Mg20_test_sim.C &
@@ -56,11 +60,11 @@ while true; do
         wait $pid2
 
         # convert root files to h5
-        cd /mnt/analysis/e17023/Adam/ATTPCROOTv2/compiled/ROOT2HDF/build/
+        cd $attpcroot_dir"compiled/ROOT2HDF/build/"
         echo "Converting root files to h5"
         ./R2HExe output_digi.root
 
-        mv output.h5 /mnt/analysis/e17023/Adam/simOutput/output.h5
+        mv output.h5 $automation_dir"simOutput/output.h5"
         ((iterations++))
     fi
 
