@@ -13,6 +13,7 @@ Simulation and Analysis for GADGET 2
 
 Format of parameters.csv file:
 | Sim | CoefL | CoefT | Gain | GETGain | PeakingTime | N | P0 | E0 | P1 | E1 | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Name of Simulation | 0.000114 | 0.00037 | 10000 | 1000 | 720 | 100 | a or p | Main Particle Energy | a or p or 0 | Secondary Particle Energy | 0 |
 | 800KeV_proton | 0.000114 | 0.00037 | 10000 | 1000 | 720 | 100 | p | 800 | 0 | 0 | 0 |
 | Mg20_pa | 0.000114 | 0.00037 | 10000 | 1000 | 720 | 100 | p | 1200 | a | 500 | 0 |
