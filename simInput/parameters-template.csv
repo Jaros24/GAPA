@@ -1,2 +1,2 @@
-Sim,CoefL,CoefT,Gain,GETGain,PeakingTime,MaxRange,Status
-Reference,0.000114,0.00037,10000,1000,720,500,0
+Sim,CoefL,CoefT,Gain,GETGain,PeakingTime,N,P0,E0,P1,E1,Status
+800p_Ref,0.000114,0.00037,10000,1000,720,100,p,800,0,0,0
