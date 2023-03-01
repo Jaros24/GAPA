@@ -44,15 +44,22 @@ Bool_t AtTPC20MgDecay::ReadEvent(FairPrimaryGenerator *primGen)
    pxAlpha = ptAlpha * TMath::Cos(phiAlpha);
    pyAlpha = ptAlpha * TMath::Sin(phiAlpha);
 
+
    
    if (fNuclearDecayChainIsSet){
 
       // Generate a random number between 0 and 1
-      brp=gRandom->Uniform(0,1);
+      bra=1;
+
+if(bra<=1){
+			Double32_t AlphaMomentum = TMath::Sqrt(pxAlpha*pxAlpha+pyAlpha*pyAlpha+pzAlpha*pzAlpha);
+			pxAlpha=pxAlpha*fParticleEnergies[i]/AlphaMomentum;
+			pyAlpha=pyAlpha*fParticleEnergies[i]/AlphaMomentum;
+			pzAlpha=pzAlpha*fParticleEnergies[i]/AlphaMomentum;}
 
       // If the random number is less than or equal to the branching ratio for alpha particles,
       // generate an alpha particle.
-      if (brp <= fParticleBranchingRatios[0]) {
+      if (bra == 1) {
          primGen->AddTrack(alphaPDGID, pxAlpha, pyAlpha, pzAlpha, fX, fY, fZ);
       }
    }

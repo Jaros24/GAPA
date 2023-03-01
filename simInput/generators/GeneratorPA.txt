@@ -146,7 +146,7 @@ for (Int_t i =0; i<fParticlesDefinedInNuclearDecay; i++){
 
 
 		  //if(bra<=0.716){
-                if(bra<=1){
+      if(bra<=1){
 			Double32_t AlphaMomentum = TMath::Sqrt(pxAlpha*pxAlpha+pyAlpha*pyAlpha+pzAlpha*pzAlpha);
 			pxAlpha=pxAlpha*fParticleEnergies[i]/AlphaMomentum;
 			pyAlpha=pyAlpha*fParticleEnergies[i]/AlphaMomentum;
