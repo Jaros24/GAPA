@@ -6,28 +6,36 @@ import os
 
 # %%
 # set locations for working files
-parameters_dir = '/mnt/analysis/e17023/Adam/simInput/parameters.csv'
-output_dir = '/mnt/analysis/e17023/Adam/simOutput/'
-indicator_directory = '/mnt/analysis/e17023/Adam/'
 
-attpcroot_param = '/mnt/analysis/e17023/Adam/ATTPCROOTv2/parameters/GADGET.sim.par'
+# ATTPCROOTv2 directories
+attpcroot_dir = '/mnt/analysis/e17023/Adam/ATTPCROOTv2/'
+
+attpcroot_param = attpcroot_dir + 'parameters/GADGET.sim.par'
+attpcroot_mg20_cxx = attpcroot_dir + 'AtGenerators/AtTPC20MgDecay.cxx'
+attpcroot_mg20_h = attpcroot_dir + 'AtGenerators/AtTPC20MgDecay.h'
+attpcroot_rundigi = attpcroot_dir + 'macro/Simulation/GADGET/rundigi_sim.C'
+attpcroot_r2h = attpcroot_dir + 'compiled/ROOT2HDF/R2HMain.cc'
+
+
+
+# Automation directories
+automation_dir = '/mnt/analysis/e17023/Adam/GADGET2/'
+parameters_dir = automation_dir + 'simInput/parameters.csv'
+output_dir = automation_dir + 'simOutput/'
 default_name = 'output.h5'
 
-attpcroot_mg20_cxx = '/mnt/analysis/e17023/Adam/ATTPCROOTv2/AtGenerators/AtTPC20MgDecay.cxx'
-attpcroot_mg20_h = '/mnt/analysis/e17023/Adam/ATTPCROOTv2/AtGenerators/AtTPC20MgDecay.h'
 
-alpha_gen = '/mnt/analysis/e17023/Adam/simInput/generators/GeneratorA.txt'
-proton_gen = '/mnt/analysis/e17023/Adam/simInput/generators/GeneratorP.txt'
-pa_gen = '/mnt/analysis/e17023/Adam/simInput/generators/GeneratorPA.txt'
-next_gen = '/mnt/analysis/e17023/Adam/simInput/generators/nextGenerator.txt'
+alpha_gen = automation_dir + 'simInput/templates/GeneratorA.txt'
+proton_gen = automation_dir + 'simInput/templates/GeneratorP.txt'
+pa_gen = automation_dir + 'simInput/templates/GeneratorPA.txt'
+next_gen = automation_dir + 'simInput/templates/nextGenerator.txt'
 
-attpcroot_mg20_testsim = '/mnt/analysis/e17023/Adam/simInput/generators/Mg20_test_sim.txt'
-attpcroot_mg20_testsim_template = '/mnt/analysis/e17023/Adam/simInput/generators/Mg20_test_sim_template.txt'
-attpcroot_rundigi = '/mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/rundigi_sim.C'
-attpcroot_r2h = '/mnt/analysis/e17023/Adam/ATTPCROOTv2/compiled/ROOT2HDF/R2HMain.cc'
+attpcroot_mg20_testsim = automation_dir + 'simInput/Mg20_test_sim.txt'
+attpcroot_mg20_testsim_template = automation_dir + 'simInput/templates/Mg20_test_sim.txt'
+
 
 # %%
-def indicator_file(file_type, indicator_directory=indicator_directory):
+def indicator_file(file_type, indicator_directory=automation_dir):
     df = pd.DataFrame([0])
     df.to_csv(indicator_directory + file_type + '.csv', index=False)
     print(file_type + ' FILE CREATED')

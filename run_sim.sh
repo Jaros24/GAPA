@@ -44,7 +44,7 @@ while true; do
 
         # copy simulation files
         rm $attpcroot_dir"macro/Simulation/GADGET/Mg20_test_sim.C"
-        cp $automation_dir"simInput/generators/Mg20_test_sim.txt" $attpcroot_dir"macro/Simulation/GADGET/Mg20_test_sim.C"
+        cp $automation_dir"simInput/Mg20_test_sim.txt" $attpcroot_dir"macro/Simulation/GADGET/Mg20_test_sim.C"
         
         # run simulation
         cd $attpcroot_dir"macro/Simulation/GADGET/"
