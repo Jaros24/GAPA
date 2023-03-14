@@ -1,0 +1,80 @@
+Warning in <TApplication::GetOptions>: macro Mg20_test_sim.C not found
+Warning in <TApplication::GetOptions>: macro rundigi_sim.C not found
+Warning in <TApplication::GetOptions>: macro Mg20_test_sim.C not found
+Warning in <TApplication::GetOptions>: macro rundigi_sim.C not found
+Warning in <TApplication::GetOptions>: macro Mg20_test_sim.C not found
+Warning in <TApplication::GetOptions>: macro rundigi_sim.C not found
+Warning in <TApplication::GetOptions>: macro Mg20_test_sim.C not found
+Warning in <TApplication::GetOptions>: macro rundigi_sim.C not found
+Warning in <TApplication::GetOptions>: macro Mg20_test_sim.C not found
+Warning in <TApplication::GetOptions>: macro rundigi_sim.C not found
+Warning in <TApplication::GetOptions>: macro Mg20_test_sim.C not found
+Warning in <TApplication::GetOptions>: macro rundigi_sim.C not found
+Warning in <TApplication::GetOptions>: macro Mg20_test_sim.C not found
+
+Processing /mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/Mg20_test_sim.C...
+In file included from input_line_11:1:
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/Mg20_test_sim.C:1:70: error: expected ';' after top level declarator
+void Mg20_test_sim(Int_t nEvents = 100, TString mcEngine = "TGeant4")
+                                                                     ^
+                                                                     ;
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/Mg20_test_sim.C:12:4: error: unknown type name 'timer'
+   timer.Start();
+   ^
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/Mg20_test_sim.C:12:9: error: cannot use dot operator on a type
+   timer.Start();
+        ^
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/Mg20_test_sim.C:18:4: error: unknown type name 'FairRunSim'
+   FairRunSim *run = new FairRunSim();
+   ^
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/Mg20_test_sim.C:18:26: error: unknown type name 'FairRunSim'
+   FairRunSim *run = new FairRunSim();
+                         ^
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/Mg20_test_sim.C:19:4: error: unknown type name 'run'
+   run->SetName(mcEngine);      // Transport engine
+   ^
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/Mg20_test_sim.C:19:7: error: cannot use arrow operator on a type
+   run->SetName(mcEngine);      // Transport engine
+      ^
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/Mg20_test_sim.C:20:4: error: unknown type name 'run'
+   run->SetOutputFile(outFile); // Output file
+   ^
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/Mg20_test_sim.C:20:7: error: cannot use arrow operator on a type
+   run->SetOutputFile(outFile); // Output file
+      ^
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/Mg20_test_sim.C:21:4: error: unknown type name 'FairRuntimeDb'
+   FairRuntimeDb *rtdb = run->GetRuntimeDb();
+   ^
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/Mg20_test_sim.C:25:4: error: unknown type name 'run'
+   run->SetMaterials("media.geo"); // Materials
+   ^
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/Mg20_test_sim.C:25:7: error: cannot use arrow operator on a type
+   run->SetMaterials("media.geo"); // Materials
+      ^
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/Mg20_test_sim.C:30:4: error: unknown type name 'FairModule'
+   FairModule *cave = new AtCave("CAVE");
+   ^
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/Mg20_test_sim.C:30:27: error: unknown type name 'AtCave'
+   FairModule *cave = new AtCave("CAVE");
+                          ^
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/Mg20_test_sim.C:31:4: error: unknown type name 'cave'
+   cave->SetGeometryFileName("cave.geo");
+   ^
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/Mg20_test_sim.C:31:8: error: cannot use arrow operator on a type
+   cave->SetGeometryFileName("cave.geo");
+       ^
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/Mg20_test_sim.C:32:4: error: unknown type name 'run'
+   run->AddModule(cave);
+   ^
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/Mg20_test_sim.C:32:7: error: cannot use arrow operator on a type
+   run->AddModule(cave);
+      ^
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/Mg20_test_sim.C:40:4: error: unknown type name 'FairDetector'
+   FairDetector *ATTPC = new AtTpc("ATTPC", kTRUE);
+   ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+
+Processing /mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/rundigi_sim.C...
+
+ *** Break *** keyboard interrupt
+root.exe: /mnt/analysis/e12014/buildSpace/FairSoft/build/Source/root/interpreter/llvm/src/tools/clang/lib/Parse/Parser.cpp:440: virtual clang::Parser::~Parser(): Assertion `TemplateIds.empty() && "Still alive TemplateIdAnnotations around?"' failed.
