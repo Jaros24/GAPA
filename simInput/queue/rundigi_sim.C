@@ -45,7 +45,7 @@ void rundigi_sim(
    pulse->SetMap(mapping);
 
    auto psa = std::make_unique<AtPSAMax>();
-   psa->SetThreshold(5); // Threshold
+   psa->SetThreshold(10); // Threshold
 
    AtPSAtask *psaTask = new AtPSAtask(std::move(psa));
    psaTask->SetPersistence(kTRUE);
@@ -66,7 +66,7 @@ void rundigi_sim(
    // __ Init and run ___________________________________
 
    fRun->Init();
-   fRun->Run(0, 10); // N
+   fRun->Run(0, 20); // N
 
    std::cout << std::endl << std::endl;
    std::cout << "Macro finished succesfully." << std::endl << std::endl;
