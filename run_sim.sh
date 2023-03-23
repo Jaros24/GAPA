@@ -26,21 +26,25 @@ while true; do
         rm $automation_dir"STOP.csv"
         break
     else
-        if [ -f $automation_dir"BUILD.csv" ]; then
+        # MOVE QUEUED FILES TO SIMULATION FOLDER
+        mv -f $automation_dir"simInput/queue/Mg20_test_sim.C" $attpcroot_dir"macro/Simulation/GADGET/Mg20_test_sim.C"
+        mv -f $automation_dir"simInput/queue/rundigi_sim.C" $attpcroot_dir"macro/Simulation/GADGET/rundigi_sim.C"
+        mv -f $automation_dir"simInput/queue/GADGET.sim.par" $attpcroot_dir"parameters/GADGET.sim.par"
+        mv -f $automation_dir"AtTPC20MgDecay.cxx" $attpcroot_dir"AtGenerators/AtTPC20MgDecay.cxx"
+        # Add more files as implimented in same format
+
+        # for testing, assume build is always needed
+        #if [ -f $automation_dir"BUILD.csv" ]; then
             # Delete BUILD.csv
-            echo "BUILD.csv found, rebuilding ATTPCROOT"
-            rm $automation_dir"BUILD.csv"
+            #echo "BUILD.csv found, rebuilding ATTPCROOT"
+            #rm $automation_dir"BUILD.csv"
 
-            # build ATTPCROOT
-            make -C $automation_dir"build/" -j8
+        # build ATTPCROOT
+        make -C $automation_dir"build/" -j8
 
-            # build ROOT2HDF
-            make -C $attpcroot_dir"compiled/ROOT2HDF/build/"
-        fi
-
-        # copy simulation files
-        rm $attpcroot_dir"macro/Simulation/GADGET/Mg20_test_sim.C"
-        cp $automation_dir"simInput/Mg20_test_sim.txt" $attpcroot_dir"macro/Simulation/GADGET/Mg20_test_sim.C"
+        # build ROOT2HDF
+        make -C $attpcroot_dir"compiled/ROOT2HDF/build/"
+        #fi
         
         
         # run simulation        
