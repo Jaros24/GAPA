@@ -34,7 +34,7 @@ Bool_t AtTPC20MgDecay::ReadEvent(FairPrimaryGenerator *primGen)
    Int_t gammaPDGID = 22;
    Int_t betaPDGID = 11;
    Double32_t ptAlpha = 0, pxAlpha = 0, pyAlpha = 0, pzAlpha = 0;
-   Double32_t pabsAlpha = 0.0388; // GeV/c
+   Double32_t pabsAlpha = 0.0388; // P0 E0
    //Double32_t pabsAlpha = 0.2170; // GeV/c
    Double32_t brp=0;
    Double32_t thetaAlpha = acos(gRandom->Uniform(-1, 1));
