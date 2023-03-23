@@ -6,33 +6,11 @@ import os
 
 # %%
 # set locations for working files
-
-# ATTPCROOTv2 directories
+# ATTPCROOTv2 directory
 attpcroot_dir = '/mnt/analysis/e17023/Adam/ATTPCROOTv2/'
 
-attpcroot_param = attpcroot_dir + 'parameters/GADGET.sim.par'
-attpcroot_mg20_cxx = attpcroot_dir + 'AtGenerators/AtTPC20MgDecay.cxx'
-attpcroot_mg20_h = attpcroot_dir + 'AtGenerators/AtTPC20MgDecay.h'
-attpcroot_rundigi = attpcroot_dir + 'macro/Simulation/GADGET/rundigi_sim.C'
-attpcroot_r2h = attpcroot_dir + 'compiled/ROOT2HDF/R2HMain.cc'
-
-
-
-# Automation directories
+# Automation directory
 automation_dir = '/mnt/analysis/e17023/Adam/GADGET2/'
-parameters_dir = automation_dir + 'simInput/parameters.csv'
-output_dir = automation_dir + 'simOutput/'
-default_name = 'output.h5'
-
-
-alpha_gen = automation_dir + 'simInput/templates/GeneratorA.txt'
-proton_gen = automation_dir + 'simInput/templates/GeneratorP.txt'
-pa_gen = automation_dir + 'simInput/templates/GeneratorPA.txt'
-next_gen = automation_dir + 'simInput/templates/nextGenerator.txt'
-
-attpcroot_mg20_testsim = automation_dir + 'simInput/Mg20_test_sim.txt'
-attpcroot_mg20_testsim_template = automation_dir + 'simInput/templates/Mg20_test_sim.txt'
-
 
 # %%
 def indicator_file(file_type, indicator_directory=automation_dir):
@@ -57,7 +35,7 @@ def energy_to_momentum(energy, particle):
     return momentum
 
 # %%
-parameters = pd.read_csv(parameters_dir)
+parameters = pd.read_csv(automation_dir + 'simInput/parameters.csv')
 
 # %%
 # check for and complete any active simulations
@@ -66,8 +44,7 @@ parameters = pd.read_csv(parameters_dir)
 # 1 = active
 # 2 = complete
 
-previous_N = 0
-previous_Particles = (0,0,0,0)
+# todo: check for changes that require a rebuild
 
 if not parameters['Sim'].is_unique:
     indicator_file('STOP')
@@ -82,17 +59,16 @@ if len(active_sims) > 0:
     
     # Search for output.h5 and rename
     Complete = False
-    for filename in os.listdir(output_dir):
-        f = os.path.join(output_dir, filename)
+    for filename in os.listdir(automation_dir + 'simOutput/'):
+        f = os.path.join(automation_dir + 'simOutput/', filename)
         # checking if it is a file
         if os.path.isfile(f):
-            if filename == default_name:
-                os.rename(f, output_dir+active_sims.loc[active_sims.index[0],'Sim']+'.h5')
+            if filename == 'output.h5':
+                os.rename(f, automation_dir + 'simOutput/' + active_sims.loc[active_sims.index[0],'Sim']+'.h5')
                 Complete = True
+    
     # Set Status in parameters
     if Complete:
-        previous_N  = parameters.loc[active_sims.index[0], 'N']
-        previous_Particles = (parameters.loc[active_sims.index[0], 'P0'], parameters.loc[active_sims.index[0], 'E0'], parameters.loc[active_sims.index[0], 'P1'], parameters.loc[active_sims.index[0], 'E1'])
         parameters.loc[active_sims.index[0], 'Status'] = 2
         print('Simulation', parameters.loc[active_sims.index[0], 'Sim'] + ' complete')
         
@@ -105,7 +81,7 @@ if len(active_sims) > 0:
 inactive_sims = parameters[parameters['Status'] == 0]
 if len(inactive_sims) == 0:
     indicator_file('STOP')
-    parameters.to_csv(parameters_dir, index=False)
+    parameters.to_csv(automation_dir + 'simInput/parameters.csv', index=False)
     raise Exception('Finished with all simulations')
 else:
     active_sim = inactive_sims.index[0]
@@ -113,121 +89,135 @@ else:
     print("next simulation: ", parameters.loc[active_sim, 'Sim'])
 
 # %%
-# write new params to GADGET.sim.par
-with open(attpcroot_param, 'r') as f:
-    lines = f.readlines()
-
-lines[38] = 'CoefL:Double_t      ' + str(parameters.loc[active_sim, 'CoefL']) +   ' # Longitudal coefficient of diffusion [cm2/us]\n'
-lines[39] = 'CoefT:Double_t      ' + str(parameters.loc[active_sim, 'CoefT']) +   ' # Transverse coefficient of diffusion [cm2/us]\n'
-lines[40] = 'Gain:Double_t       ' + str(parameters.loc[active_sim, 'Gain']) +    ' # Average gain of micromegas\n'
-lines[41] = 'GETGain:Double_t    ' + str(parameters.loc[active_sim, 'GETGain']) + ' # Gain of the GET electronics in fC\n'
-lines[42] = 'PeakingTime:Int_t   ' + str(parameters.loc[active_sim, 'PeakingTime']) +' # Electronic peaking time in ns\n'
-
-print('New parameters:')
-[print(line) for line in lines[38:43]]
-
-with open(attpcroot_param, "w") as f:
-    f.writelines(lines)
+# run check on parameters to confirm they are valid
+# TODO
 
 # %%
-# IF N is different, change Mg20_test_sim.C and rundigi_sim.C
-if parameters.loc[active_sim, 'N'] != previous_N:
-    # modify Mg20_test_sim.C
-    with open(attpcroot_mg20_testsim_template, 'r') as f:
-        lines = f.readlines()
-    lines[0] = 'void Mg20_test_sim(Int_t nEvents = ' + str(parameters.loc[active_sim,'N']) +', TString mcEngine = "TGeant4")'
-    with open(attpcroot_mg20_testsim, "w") as f:
-        f.writelines(lines)
+# Modify GADGET.sim.par
+with open(automation_dir + 'simInput/templates/GADGET.sim.par', 'r') as file :
+    filedata = file.readlines()
     
-    # modify rundigi_sim.C
-    with open(attpcroot_rundigi, 'r+') as f:
-        lines = f.readlines()
-        lines[68] = 'fRun->Run(0, ' + str(parameters.loc[active_sim,'N']) +');}'
-        f.seek(0)
-        f.writelines(lines)
+# replace target parameters
+for param in parameters.columns:
+    for i, line in enumerate(filedata):
+        if param == line.split(':')[0]:
+            # Line composition:     param:ptype_t   paramval   # units / comments
+            
+            ptype = line.split(':')[1].split('_')[0]
+            paramval = parameters.loc[active_sim, param]
+            filedata[i] = param + ': ' + ptype + '_t     ' + str(paramval) + '     #' + line.split('#')[1]
+ 
+# write file
+with open(automation_dir + 'simInput/queue/GADGET.sim.par', 'w') as file:
+    file.writelines(filedata)
+
 
 # %%
-# If particle energies are different, change AtTPC20MgDecay.cxx
-# particle notation:
-# P0 = primary particle, P1 = secondary particle
-# a = alpha, p = proton, 0 = none
-# if only one particle, P1 = 0, E1 is ignored
-# for proton-alpha events, P0 = p, P1 = a, not reversed
-# E0/E1 = energy of primary/secondary particle, KeV
+# Modify AtTPC20MgDecay.cxx (Generators)
+P0 = parameters.loc[active_sim, 'P0']; E0 = parameters.loc[active_sim, 'E0']
+P1 = parameters.loc[active_sim, 'P1']; E1 = parameters.loc[active_sim, 'E1']
 
-if (parameters.loc[active_sim, 'P0'], parameters.loc[active_sim, 'E0'], parameters.loc[active_sim, 'P1'], parameters.loc[active_sim, 'E1']) != previous_Particles:
-    
-    # check if particle types and energies are valid
-    if parameters.loc[active_sim, 'P0'] not in ['a', 'p']:
-        indicator_file('STOP')
-        raise Exception('Primary particle not specified')
-    elif parameters.loc[active_sim, 'E0'] <= 0:
-        indicator_file('STOP')
-        raise Exception('Primary particle energy not specified or invalid')
-    elif parameters.loc[active_sim, 'P1'] not in ['a', 'p', '0']:
-        indicator_file('STOP')
-        raise Exception('Secondary particle not specified')
-    elif parameters.loc[active_sim, 'P1'] in ['a', 'p'] and parameters.loc[active_sim, 'E1'] <= 0:
-        indicator_file('STOP')
-        raise Exception('Secondary particle energy not specified or invalid')
-    elif parameters.loc[active_sim, 'P0'] == 'a' and parameters.loc[active_sim, 'P1'] == 'a':
-        indicator_file('STOP')
-        raise Exception('Alpha-alpha events not supported yet')
-    elif parameters.loc[active_sim, 'P0'] == 'p' and parameters.loc[active_sim, 'P1'] == 'p':
-        indicator_file('STOP')
-        raise Exception('Proton-proton events not supported yet')
-    elif parameters.loc[active_sim, 'P0'] == 'a' and parameters.loc[active_sim, 'P1'] == 'p':
-        indicator_file('STOP')
-        raise Exception('Proton-Alpha events need to be in order (P0 = p, P1 = a)')
-    
-    # determine type of decay specified
-    if parameters.loc[active_sim, 'P0'] == 'p':
-        # proton decay 
-        with open(proton_gen, 'r') as f:
-            lines = f.readlines()
-        lines[36] = '   Double32_t pabsProton = ' + str(energy_to_momentum(parameters.loc[active_sim, 'E0'], 'p')) + '; // GeV/c\n'
-        with open(attpcroot_mg20_cxx, "w") as f:
-            f.writelines(lines)
-    
-    elif parameters.loc[active_sim, 'P0'] == 'a':
-        # alpha decay
-        with open(alpha_gen, 'r') as f:
-            lines = f.readlines()
-        lines[36] = '   Double32_t pabsAlpha = ' + str(energy_to_momentum(parameters.loc[active_sim, 'E0'], 'a')) + '; // GeV/c'
-        with open(attpcroot_mg20_cxx, "w") as f:
-            f.writelines(lines)
-        
-    elif parameters.loc[active_sim, 'P0'] == 'p' and parameters.loc[active_sim, 'P1'] == 'a':
-        # proton-alpha decay
-        with open(pa_gen, 'r') as f:
-            lines = f.readlines()
-        lines[78] = '   Double32_t pabsProton = ' + str(energy_to_momentum(parameters.loc[active_sim, 'E0', 'p'])) + '; // GeV/c'
-        lines[89] = '   Double32_t pabsAlpha = ' + str(energy_to_momentum(parameters.loc[active_sim, 'E1', 'a'])) + '; // GeV/c'
-        with open(attpcroot_mg20_cxx, "w") as f:
-            f.writelines(lines)
-    
-    
-    # modify Mg20_test_sim.C for two-particle decay
-    with open(attpcroot_mg20_testsim_template, 'r') as f:
-        lines = f.readlines()
-    # set primary particle
-    lines[54] = '   decay->SetDecayChainPoint('+ str(energy_to_momentum(parameters.loc[active_sim, 'E0'], parameters.loc[active_sim, 'P0'])) + ', 1);        // p0'
-    
-    # set secondary particle
-    if parameters.loc[active_sim, 'P1'] == 'a':
-        lines[55] = '   decay->SetDecayChainPoint('+ str(energy_to_momentum(parameters.loc[active_sim, 'E1'], parameters.loc[active_sim, 'P1'])) + ', 2);        // p1'
-    else: # comment out 2nd particle
-        lines[55] = '//   decay->SetDecayChainPoint('+ str(0) + ', 1);        // p1'
-    
-    lines[0] = 'void Mg20_test_sim(Int_t nEvents = ' + str(parameters.loc[active_sim,'N']) +', TString mcEngine = "TGeant4")'
-    
-    with open(attpcroot_mg20_testsim, "w") as f:
-        f.writelines(lines)
+ParticleString = str(P0)
+if E1 != 0:
+    ParticleString = ParticleString + str(P1)
 
-    indicator_file('BUILD')
+ParticleString = ParticleString.upper()
+
+# TEST FOR EXISTING GENERATOR FILE AND EDIT WITH PARTICLE ENERGIES
+if os.path.isfile(automation_dir + 'simInput/templates/Generator' + ParticleString + '.txt'):
+    with open(automation_dir + 'simInput/templates/Generator' + ParticleString + '.txt', 'r') as file :
+        filedata = file.readlines()
+    
+    # locate and replace particle energies (Comment lines in generators with P0 E0 or P1 E1 to specify which line to replace)
+    for i, line in enumerate(filedata):
+        if 'P0 E0' in line.split('//')[-1]:
+            filedata[i] = line.split('=')[0] + '= ' + str(energy_to_momentum(E0, P0)) + '; // P0 E0\n'
+
+        if 'P1 E1' in line.split('//')[-1]:
+            filedata[i] = line.split('=')[0] + '= ' + str(energy_to_momentum(E1, P1)) + '; // P1 E1\n'
+
+    
+    # write file
+    with open(automation_dir + 'simInput/queue/AtTPC20MgDecay.cxx', 'w') as file:
+        file.writelines(filedata)
+
+else: # STOP SIMULATIONS, GENERATOR FILE DOES NOT EXIST
+    indicator_file('STOP')
+    print('Generator file', ParticleString ,'does not exist')
+    raise Exception('Generator file does not exist')
+
+# %%
+# MODIFY Mg20_test_sim.C
+active_sim = 0
+
+P0 = parameters.loc[active_sim, 'P0']; E0 = parameters.loc[active_sim, 'E0']
+P1 = parameters.loc[active_sim, 'P1']; E1 = parameters.loc[active_sim, 'E1']
+
+with open(automation_dir + 'simInput/templates/Mg20_test_sim.txt', 'r') as file:
+    filedata = file.readlines()
+
+# Modify particle momentum
+for i, line in enumerate(filedata):
+    if 'P0 E0' in line.split('//')[-1]:
+        filedata[i] = line.split('(')[0] + '(' + str(energy_to_momentum(E0, P0)) + ', 1); // P0 E0\n'
+
+    if 'P1 E1' in line.split('//')[-1]:
+        if E1 == 0:
+            filedata[i] = '// ' + line
+        else:
+            filedata[i] = line.split('(')[0] + '(' + str(energy_to_momentum(E1, P1)) + ', 1); // P1 E1\n'
+
+# modify particle origin
+for i, line in enumerate(filedata):
+    if 'bounds' in line.split('//')[-1]:
+        Xb = parameters.loc[active_sim, 'Xb']
+        Yb = parameters.loc[active_sim, 'Yb']
+        Zb1 = parameters.loc[active_sim, 'Zb1']
+        Zb2 = parameters.loc[active_sim, 'Zb2']
+
+        filedata[i] = line.split('(')[0] + '(' + str(-Xb) + ', ' + str(-Yb) + ', ' + str(Zb1) + ', ' + str(Xb) + ', ' + str(Yb) + ', ' + str(Zb2) + '); // bounds\n'
+
+# modify number of particles
+filedata[0] = filedata[0].split('=')[0] + '= ' + str(int(parameters.loc[active_sim, 'N'])) + ',' + filedata[0].split(',')[-1]
+
+# write file
+with open(automation_dir + 'simInput/queue/Mg20_test_sim.C', 'w') as file:
+    file.writelines(filedata)
+
+# %%
+# Modify rundigi_sim.C
+with open(automation_dir + 'simInput/templates/rundigi_sim.C', 'r') as file:
+    filedata = file.readlines()
+
+# modify number of particles
+for i, line in enumerate(filedata):
+    if ' N\n' == line.split('//')[-1]:
+        filedata[i] = line.split(',')[0] + ', ' + str(int(parameters.loc[active_sim, 'N'])) + '); // N\n'
+
+# modify Threshold
+for i, line in enumerate(filedata):
+    if 'Threshold' in line.split('//')[-1]:
+        threshold = parameters.loc[active_sim, 'Threshold']
+
+        filedata[i] = line.split('(')[0] + '(' + str(threshold) + '); // Threshold\n'
+
+# write file
+with open(automation_dir + 'simInput/queue/rundigi_sim.C', 'w') as file:
+    file.writelines(filedata)
+
+# %%
+# POSSIBLE FUTURE FILE MODIFICATIONS (NOT CURRENTLY IMPLEMENTED)
+# Modify R2HMain.cc
+# TODO
+# Modify media.geo
+# TODO
+# Modify GADGET_II.C
+# TODO
+# Modify GADGET_II_lp.C
+# TODO
 
 # %%
 # Update parameters.csv
-parameters.to_csv(parameters_dir, index=False)
+parameters.to_csv(automation_dir + 'simInput/parameters.csv', index=False)
 
 
