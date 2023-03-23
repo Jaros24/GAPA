@@ -1,4 +1,4 @@
-void Mg20_test_sim(Int_t nEvents = 100, TString mcEngine = "TGeant4"){
+void Mg20_test_sim(Int_t nEvents = 20, TString mcEngine = "TGeant4"){
 
    TString dir = getenv("VMCWORKDIR");
 
@@ -51,10 +51,10 @@ void Mg20_test_sim(Int_t nEvents = 100, TString mcEngine = "TGeant4"){
    AtTPC20MgDecay *decay = new AtTPC20MgDecay();
    decay->SetNuclearDecayChain();
 
-   decay->SetDecayChainPoint(0.0610522678252004, 1); // P0 E0
-   decay->SetDecayChainPoint(0, 1); // P1 E1
+   decay->SetDecayChainPoint(0.038745778364306996, 1); // P0 E0
+//    decay->SetDecayChainPoint(0, 1); // P1 E1
 
-   decay->SetBoxXYZ(-4.0, -4.0, 10.0, 4.0, 4.0, 40.0); // bounds
+   decay->SetBoxXYZ(-2.0, -2.0, 10.0, 2.0, 2.0, 40.0); // bounds
    
    //decay->SetBoxXYZ(-2.0, -2.0, 15.0, 2.0, 2.0, 25.0);
    // decay->SetBoxXYZ(-4.15875,-0.15875,0.1500,0.15875,0.15875,0.1596);
