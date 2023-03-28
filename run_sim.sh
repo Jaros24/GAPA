@@ -74,9 +74,13 @@ while true; do
 
         # convert root files to h5
         echo "Converting root files to h5"
-        $attpcroot_dir"compiled/ROOT2HDF/build/R2HExe" output_digi.root
 
-        mv $attpcroot_dir"compiled/ROOT2HDF/build/output.h5" $automation_dir"simOutput/output.h5"
+        # bad fix to solve location of output_digi.root
+        mv $automation_dir"output_digi.root" $attpcroot_dir"macro/Simulation/GADGET/output_digi.root"
+        
+        $attpcroot_dir"compiled/ROOT2HDF/build/R2HExe" $attpcroot_dir"macro/Simulation/GADGET/output_digi.root"
+
+        mv $automation_dir"output.h5" $automation_dir"simOutput/output.h5"
         ((iterations++))
     fi
 
