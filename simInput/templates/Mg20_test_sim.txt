@@ -3,10 +3,10 @@ void Mg20_test_sim(Int_t nEvents = 100, TString mcEngine = "TGeant4"){
    TString dir = getenv("VMCWORKDIR");
 
    // Output file name
-   TString outFile = "mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/data/gadgetsim.root";
+   TString outFile = "/mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/data/gadgetsim.root";
 
    // Parameter file name
-   TString parFile = "mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/data/gadgetpar.root";
+   TString parFile = "/mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/data/gadgetpar.root";
 
    // -----   Timer   --------------------------------------------------------
    TStopwatch timer;
