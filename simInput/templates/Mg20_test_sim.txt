@@ -86,7 +86,7 @@ void Mg20_test_sim(Int_t nEvents = 100, TString mcEngine = "TGeant4"){
    run->Run(nEvents);
 
    // You can export your ROOT geometry ot a separate file
-   run->CreateGeometryFile("./data/geofile_proto_full.root");
+   run->CreateGeometryFile("/mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/data/geofile_proto_full.root");
    // ------------------------------------------------------------------------
 
    // -----   Finish   -------------------------------------------------------
