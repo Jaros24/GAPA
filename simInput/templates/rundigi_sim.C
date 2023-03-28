@@ -1,5 +1,5 @@
 void rundigi_sim(
-   TString mcFile = "./data/gadgetsim.root",
+   TString mcFile = "/mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/data/gadgetsim.root",
    TString mapParFile =
       "/mnt/simulations/attpcroot/fair_install_2020/yassid/ATTPCROOTv2/scripts/scripts/Lookup20150611.xml",
    TString trigParFile = "/mnt/simulations/attpcroot/fair_install_2020/yassid/ATTPCROOTv2/parameters/AT.trigger.par")
