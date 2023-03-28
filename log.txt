@@ -1,0 +1,196 @@
+<steelhead:GADGET2 >run_sim.sh 
+Modifying parameters
+next simulation:  800p
+make: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[1]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[  0%] Built target update_root_include_path_build_interface
+[  0%] Built target update_root_include_path_install_interface
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[  4%] Built target AtParameter
+[  5%] Built target AtField
+[  8%] Built target AtPassive
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[ 10%] Built target AtSimulationData
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[ 21%] Built target AtData
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[ 25%] Built target AtTpc
+[ 26%] Built target AtSeGA
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[ 27%] Built target AtAnalysis
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[ 30%] Built target AtSiArray
+[ 33%] Built target AtApollo
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[ 38%] Built target AtS800
+[ 49%] Built target AtTools
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+Scanning dependencies of target AtGenerators
+[ 52%] Built target AtMap
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[ 65%] Built target AtUnpack
+[ 65%] Built target AtDigitization
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[ 85%] Built target AtReconstruction
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[ 86%] Building CXX object AtGenerators/CMakeFiles/AtGenerators.dir/AtTPC20MgDecay.cxx.o
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[ 95%] Built target AtEventDisplay
+[ 95%] Linking CXX shared library ../lib/libAtGenerators.so
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[100%] Built target AtGenerators
+make[1]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/compiled/ROOT2HDF/build'
+make[1]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/compiled/ROOT2HDF/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/compiled/ROOT2HDF/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/compiled/ROOT2HDF/build'
+[100%] Built target R2HExe
+make[1]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/compiled/ROOT2HDF/build'
+make: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/compiled/ROOT2HDF/build'
+Mg20_test_sim.C
+root [0] 
+Processing /mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/Mg20_test_sim.C...
+[WARN] FairRun::SetOutputFile() deprecated. Use FairRootFileSink.
+SysError in <TFile::TFile>: file ./data/gadgetsim.root can not be opened (No such file or directory)
+
+ *** Break *** segmentation violation
+
+
+
+===========================================================
+There was a crash.
+This is the entire stack trace of all threads:
+===========================================================
+#0  0x00007fe2b0d672d7 in __GI___waitpid (pid=4146, stat_loc=stat_loc
+entry=0x7ffd1276be88, options=options
+entry=0) at ../sysdeps/unix/sysv/linux/waitpid.c:30
+#1  0x00007fe2b0ce570f in do_system (line=<optimized out>) at ../sysdeps/posix/system.c:149
+#2  0x00007fe2b1500eb3 in TUnixSystem::Exec (shellcmd=<optimized out>, this=0x5583c39297c0) at /mnt/analysis/e12014/buildSpace/FairSoft/build/Source/root/core/unix/src/TUnixSystem.cxx:2117
+#3  TUnixSystem::StackTrace (this=0x5583c39297c0) at /mnt/analysis/e12014/buildSpace/FairSoft/build/Source/root/core/unix/src/TUnixSystem.cxx:2408
+#4  0x00007fe2b1503085 in TUnixSystem::DispatchSignals (this=0x5583c39297c0, sig=kSigSegmentationViolation) at /mnt/analysis/e12014/buildSpace/FairSoft/build/Source/root/core/unix/src/TUnixSystem.cxx:3646
+#5  <signal handler called>
+#6  FairRootFileSink::FairRootFileSink (this=0x5583c9957b70, RootFileName=..., Title=<optimized out>) at /mnt/simulations/attpcroot/fair_install_18.6/FairSoft/include/root/TObject.h:187
+#7  0x00007fe29c9c9717 in FairRun::SetOutputFile (this=0x5583c9a94fe0, fname=0x5583c9aac070 "./data/gadgetsim.root") at /mnt/simulations/attpcroot/fair_install_18.6/src/FairRoot/base/steer/FairRun.cxx:143
+#8  0x00007fe2b10242b2 in ?? ()
+#9  0x00005583c39a1e20 in ?? ()
+#10 0x00005583c39fd5f0 in ?? ()
+#11 0x00005583c39fd5f0 in ?? ()
+#12 0x0000000000000008 in ?? ()
+#13 0x00005583c98d5820 in ?? ()
+#14 0x00007fe2b17524ca in _dl_runtime_resolve_xsave () at ../sysdeps/x86_64/dl-trampoline.h:126
+===========================================================
+
+
+The lines below might hint at the cause of the crash.
+You may get help by asking at the ROOT forum https://root.cern.ch/forum
+Only if you are really convinced it is a bug in ROOT then please submit a
+report at https://root.cern.ch/bugs Please post the ENTIRE stack trace
+from above as an attachment in addition to anything else
+that might help us fixing this issue.
+===========================================================
+#6  FairRootFileSink::FairRootFileSink (this=0x5583c9957b70, RootFileName=..., Title=<optimized out>) at /mnt/simulations/attpcroot/fair_install_18.6/FairSoft/include/root/TObject.h:187
+#7  0x00007fe29c9c9717 in FairRun::SetOutputFile (this=0x5583c9a94fe0, fname=0x5583c9aac070 "./data/gadgetsim.root") at /mnt/simulations/attpcroot/fair_install_18.6/src/FairRoot/base/steer/FairRun.cxx:143
+#8  0x00007fe2b10242b2 in ?? ()
+#9  0x00005583c39a1e20 in ?? ()
+#10 0x00005583c39fd5f0 in ?? ()
+#11 0x00005583c39fd5f0 in ?? ()
+#12 0x0000000000000008 in ?? ()
+#13 0x00005583c98d5820 in ?? ()
+#14 0x00007fe2b17524ca in _dl_runtime_resolve_xsave () at ../sysdeps/x86_64/dl-trampoline.h:126
+===========================================================
+
+
+Root > .q
+rundigi_sim.C
+root [0] 
+Processing /mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/rundigi_sim.C...
+Error in <TFile::TFile>: file ./data/gadgetsim.root does not exist
+
+ *** Break *** segmentation violation
+
+
+
+===========================================================
+There was a crash.
+This is the entire stack trace of all threads:
+===========================================================
+#0  0x00007f19884982d7 in __GI___waitpid (pid=4474, stat_loc=stat_loc
+entry=0x7ffdd074ba08, options=options
+entry=0) at ../sysdeps/unix/sysv/linux/waitpid.c:30
+#1  0x00007f198841670f in do_system (line=<optimized out>) at ../sysdeps/posix/system.c:149
+#2  0x00007f1988c31eb3 in TUnixSystem::Exec (shellcmd=<optimized out>, this=0x55feb02577c0) at /mnt/analysis/e12014/buildSpace/FairSoft/build/Source/root/core/unix/src/TUnixSystem.cxx:2117
+#3  TUnixSystem::StackTrace (this=0x55feb02577c0) at /mnt/analysis/e12014/buildSpace/FairSoft/build/Source/root/core/unix/src/TUnixSystem.cxx:2408
+#4  0x00007f1988c34085 in TUnixSystem::DispatchSignals (this=0x55feb02577c0, sig=kSigSegmentationViolation) at /mnt/analysis/e12014/buildSpace/FairSoft/build/Source/root/core/unix/src/TUnixSystem.cxx:3646
+#5  <signal handler called>
+#6  FairFileSource::FairFileSource (this=0x55feb8ba5910, RootFileName=..., Title=<optimized out>) at /mnt/simulations/attpcroot/fair_install_18.6/FairSoft/include/root/TObject.h:187
+#7  0x00007f196e66b3af in ?? ()
+#8  0x00007ffdd074e840 in ?? ()
+#9  0x00007ffdd074e850 in ?? ()
+#10 0x000055feb02b1eb0 in ?? ()
+#11 0x0000000000000000 in ?? ()
+===========================================================
+
+
+The lines below might hint at the cause of the crash.
+You may get help by asking at the ROOT forum https://root.cern.ch/forum
+Only if you are really convinced it is a bug in ROOT then please submit a
+report at https://root.cern.ch/bugs Please post the ENTIRE stack trace
+from above as an attachment in addition to anything else
+that might help us fixing this issue.
+===========================================================
+#6  FairFileSource::FairFileSource (this=0x55feb8ba5910, RootFileName=..., Title=<optimized out>) at /mnt/simulations/attpcroot/fair_install_18.6/FairSoft/include/root/TObject.h:187
+#7  0x00007f196e66b3af in ?? ()
+#8  0x00007ffdd074e840 in ?? ()
+#9  0x00007ffdd074e850 in ?? ()
+#10 0x000055feb02b1eb0 in ?? ()
+#11 0x0000000000000000 in ?? ()
+===========================================================
+
+
+Root > .q
+Converting root files to h5
+./run_sim.sh: line 71: .//mnt/analysis/e17023/Adam/ATTPCROOTv2/compiled/ROOT2HDF/build/R2HExe: No such file or directory
+mv: cannot stat '/mnt/analysis/e17023/Adam/ATTPCROOTv2/compiled/ROOT2HDF/build/output.h5': No such file or directory
+Runtime: 83
+Number of Simulations: 1
+Modifying parameters
+STOP FILE CREATED
+Traceback (most recent call last):
+  File "/mnt/analysis/e17023/Adam/GADGET2/simInput/iter.py", line 77, in <module>
+    raise Exception('Could not find output file')
+Exception: Could not find output file
+STOP.csv found, stopping Loop
