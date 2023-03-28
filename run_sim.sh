@@ -8,8 +8,14 @@ automation_dir=/mnt/analysis/e17023/Adam/GADGET2/
 start=`date +%s`
 iterations=0
 
-# mark if debug
+# mark if debug mode
 debug=1
+
+# if debug, overwrite parameters with test parameters
+if [ $debug -eq 1 ]; then
+    echo "Debug mode, overwriting parameters file with test parameters"
+    cp $automation_dir"simInput/test-parameters.csv" $automation_dir"simInput/parameters.csv"
+fi
 
 # load prerequisites
 source $attpcroot_dir"env_fishtank.sh"
