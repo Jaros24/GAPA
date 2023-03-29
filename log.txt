@@ -1,13 +1,14 @@
+March 29, 2023 @ 11:16
 <steelhead:GADGET2 >run_sim.sh 
 Modifying parameters
-next simulation:  800p
+next simulation:  test_proton
 make: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
 make[1]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
 make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
 make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
 make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
-make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
-make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
 make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
 make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
 make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
@@ -21,34 +22,34 @@ make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
 make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
 make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
 make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
-[  4%] Built target AtParameter
-[  5%] Built target AtField
+[  7%] Built target AtField
+[  7%] Built target AtParameter
 [  8%] Built target AtPassive
 make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
 make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
-[ 10%] Built target AtSimulationData
-make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
-make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
-make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
-[ 21%] Built target AtData
-make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
-make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
-make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
-make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
-make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[ 19%] Built target AtData
+[ 21%] Built target AtSimulationData
 make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
 make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
 make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
-make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
-[ 25%] Built target AtTpc
-[ 26%] Built target AtSeGA
 make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
-[ 27%] Built target AtAnalysis
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
 make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
-[ 30%] Built target AtSiArray
-[ 33%] Built target AtApollo
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[ 22%] Built target AtAnalysis
 make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
-[ 38%] Built target AtS800
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[ 27%] Built target AtS800
+[ 30%] Built target AtSeGA
+[ 32%] Built target AtTpc
+[ 37%] Built target AtSiArray
+[ 49%] Built target AtApollo
 [ 49%] Built target AtTools
 make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
 make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
@@ -56,18 +57,18 @@ Scanning dependencies of target AtGenerators
 [ 52%] Built target AtMap
 make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
 make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
 make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
-make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
-make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
 make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
 [ 65%] Built target AtUnpack
 [ 65%] Built target AtDigitization
-make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
 [ 85%] Built target AtReconstruction
 make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
-[ 86%] Building CXX object AtGenerators/CMakeFiles/AtGenerators.dir/AtTPC20MgDecay.cxx.o
-make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
 make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[ 86%] Building CXX object AtGenerators/CMakeFiles/AtGenerators.dir/AtTPC20MgDecay.cxx.o
 [ 95%] Built target AtEventDisplay
 [ 95%] Linking CXX shared library ../lib/libAtGenerators.so
 make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
@@ -82,115 +83,546 @@ make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/compiled/ROOT2
 make[1]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/compiled/ROOT2HDF/build'
 make: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/compiled/ROOT2HDF/build'
 Mg20_test_sim.C
-root [0] 
-Processing /mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/Mg20_test_sim.C...
-[WARN] FairRun::SetOutputFile() deprecated. Use FairRootFileSink.
-SysError in <TFile::TFile>: file ./data/gadgetsim.root can not be opened (No such file or directory)
-
- *** Break *** segmentation violation
-
-
-
-===========================================================
-There was a crash.
-This is the entire stack trace of all threads:
-===========================================================
-#0  0x00007fe2b0d672d7 in __GI___waitpid (pid=4146, stat_loc=stat_loc
-entry=0x7ffd1276be88, options=options
-entry=0) at ../sysdeps/unix/sysv/linux/waitpid.c:30
-#1  0x00007fe2b0ce570f in do_system (line=<optimized out>) at ../sysdeps/posix/system.c:149
-#2  0x00007fe2b1500eb3 in TUnixSystem::Exec (shellcmd=<optimized out>, this=0x5583c39297c0) at /mnt/analysis/e12014/buildSpace/FairSoft/build/Source/root/core/unix/src/TUnixSystem.cxx:2117
-#3  TUnixSystem::StackTrace (this=0x5583c39297c0) at /mnt/analysis/e12014/buildSpace/FairSoft/build/Source/root/core/unix/src/TUnixSystem.cxx:2408
-#4  0x00007fe2b1503085 in TUnixSystem::DispatchSignals (this=0x5583c39297c0, sig=kSigSegmentationViolation) at /mnt/analysis/e12014/buildSpace/FairSoft/build/Source/root/core/unix/src/TUnixSystem.cxx:3646
-#5  <signal handler called>
-#6  FairRootFileSink::FairRootFileSink (this=0x5583c9957b70, RootFileName=..., Title=<optimized out>) at /mnt/simulations/attpcroot/fair_install_18.6/FairSoft/include/root/TObject.h:187
-#7  0x00007fe29c9c9717 in FairRun::SetOutputFile (this=0x5583c9a94fe0, fname=0x5583c9aac070 "./data/gadgetsim.root") at /mnt/simulations/attpcroot/fair_install_18.6/src/FairRoot/base/steer/FairRun.cxx:143
-#8  0x00007fe2b10242b2 in ?? ()
-#9  0x00005583c39a1e20 in ?? ()
-#10 0x00005583c39fd5f0 in ?? ()
-#11 0x00005583c39fd5f0 in ?? ()
-#12 0x0000000000000008 in ?? ()
-#13 0x00005583c98d5820 in ?? ()
-#14 0x00007fe2b17524ca in _dl_runtime_resolve_xsave () at ../sysdeps/x86_64/dl-trampoline.h:126
-===========================================================
-
-
-The lines below might hint at the cause of the crash.
-You may get help by asking at the ROOT forum https://root.cern.ch/forum
-Only if you are really convinced it is a bug in ROOT then please submit a
-report at https://root.cern.ch/bugs Please post the ENTIRE stack trace
-from above as an attachment in addition to anything else
-that might help us fixing this issue.
-===========================================================
-#6  FairRootFileSink::FairRootFileSink (this=0x5583c9957b70, RootFileName=..., Title=<optimized out>) at /mnt/simulations/attpcroot/fair_install_18.6/FairSoft/include/root/TObject.h:187
-#7  0x00007fe29c9c9717 in FairRun::SetOutputFile (this=0x5583c9a94fe0, fname=0x5583c9aac070 "./data/gadgetsim.root") at /mnt/simulations/attpcroot/fair_install_18.6/src/FairRoot/base/steer/FairRun.cxx:143
-#8  0x00007fe2b10242b2 in ?? ()
-#9  0x00005583c39a1e20 in ?? ()
-#10 0x00005583c39fd5f0 in ?? ()
-#11 0x00005583c39fd5f0 in ?? ()
-#12 0x0000000000000008 in ?? ()
-#13 0x00005583c98d5820 in ?? ()
-#14 0x00007fe2b17524ca in _dl_runtime_resolve_xsave () at ../sysdeps/x86_64/dl-trampoline.h:126
-===========================================================
-
-
-Root > .q
+nohup: appending output to 'nohup.out'
 rundigi_sim.C
-root [0] 
-Processing /mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/rundigi_sim.C...
-Error in <TFile::TFile>: file ./data/gadgetsim.root does not exist
-
- *** Break *** segmentation violation
-
-
-
-===========================================================
-There was a crash.
-This is the entire stack trace of all threads:
-===========================================================
-#0  0x00007f19884982d7 in __GI___waitpid (pid=4474, stat_loc=stat_loc
-entry=0x7ffdd074ba08, options=options
-entry=0) at ../sysdeps/unix/sysv/linux/waitpid.c:30
-#1  0x00007f198841670f in do_system (line=<optimized out>) at ../sysdeps/posix/system.c:149
-#2  0x00007f1988c31eb3 in TUnixSystem::Exec (shellcmd=<optimized out>, this=0x55feb02577c0) at /mnt/analysis/e12014/buildSpace/FairSoft/build/Source/root/core/unix/src/TUnixSystem.cxx:2117
-#3  TUnixSystem::StackTrace (this=0x55feb02577c0) at /mnt/analysis/e12014/buildSpace/FairSoft/build/Source/root/core/unix/src/TUnixSystem.cxx:2408
-#4  0x00007f1988c34085 in TUnixSystem::DispatchSignals (this=0x55feb02577c0, sig=kSigSegmentationViolation) at /mnt/analysis/e12014/buildSpace/FairSoft/build/Source/root/core/unix/src/TUnixSystem.cxx:3646
-#5  <signal handler called>
-#6  FairFileSource::FairFileSource (this=0x55feb8ba5910, RootFileName=..., Title=<optimized out>) at /mnt/simulations/attpcroot/fair_install_18.6/FairSoft/include/root/TObject.h:187
-#7  0x00007f196e66b3af in ?? ()
-#8  0x00007ffdd074e840 in ?? ()
-#9  0x00007ffdd074e850 in ?? ()
-#10 0x000055feb02b1eb0 in ?? ()
-#11 0x0000000000000000 in ?? ()
-===========================================================
-
-
-The lines below might hint at the cause of the crash.
-You may get help by asking at the ROOT forum https://root.cern.ch/forum
-Only if you are really convinced it is a bug in ROOT then please submit a
-report at https://root.cern.ch/bugs Please post the ENTIRE stack trace
-from above as an attachment in addition to anything else
-that might help us fixing this issue.
-===========================================================
-#6  FairFileSource::FairFileSource (this=0x55feb8ba5910, RootFileName=..., Title=<optimized out>) at /mnt/simulations/attpcroot/fair_install_18.6/FairSoft/include/root/TObject.h:187
-#7  0x00007f196e66b3af in ?? ()
-#8  0x00007ffdd074e840 in ?? ()
-#9  0x00007ffdd074e850 in ?? ()
-#10 0x000055feb02b1eb0 in ?? ()
-#11 0x0000000000000000 in ?? ()
-===========================================================
-
-
-Root > .q
+nohup: appending output to 'nohup.out'
 Converting root files to h5
-./run_sim.sh: line 71: .//mnt/analysis/e17023/Adam/ATTPCROOTv2/compiled/ROOT2HDF/build/R2HExe: No such file or directory
-mv: cannot stat '/mnt/analysis/e17023/Adam/ATTPCROOTv2/compiled/ROOT2HDF/build/output.h5': No such file or directory
-Runtime: 83
+ Opening File : /mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/output_digi.root
+ Number of events : 100
+ Event number 0 Number of hits 17
+ Event number 1 Number of hits 23
+ Event number 2 Number of hits 20
+ Event number 3 Number of hits 26
+ Event number 4 Number of hits 22
+ Event number 5 Number of hits 24
+ Event number 6 Number of hits 18
+ Event number 7 Number of hits 21
+ Event number 8 Number of hits 22
+ Event number 9 Number of hits 16
+ Event number 10 Number of hits 19
+ Event number 11 Number of hits 20
+ Event number 12 Number of hits 21
+ Event number 13 Number of hits 14
+ Event number 14 Number of hits 19
+ Event number 15 Number of hits 14
+ Event number 16 Number of hits 22
+ Event number 17 Number of hits 20
+ Event number 18 Number of hits 26
+ Event number 19 Number of hits 22
+ Event number 20 Number of hits 18
+ Event number 21 Number of hits 21
+ Event number 22 Number of hits 20
+ Event number 23 Number of hits 24
+ Event number 24 Number of hits 22
+ Event number 25 Number of hits 23
+ Event number 26 Number of hits 17
+ Event number 27 Number of hits 16
+ Event number 28 Number of hits 18
+ Event number 29 Number of hits 13
+ Event number 30 Number of hits 19
+ Event number 31 Number of hits 10
+ Event number 32 Number of hits 16
+ Event number 33 Number of hits 18
+ Event number 34 Number of hits 25
+ Event number 35 Number of hits 21
+ Event number 36 Number of hits 23
+ Event number 37 Number of hits 20
+ Event number 38 Number of hits 22
+ Event number 39 Number of hits 20
+ Event number 40 Number of hits 12
+ Event number 41 Number of hits 22
+ Event number 42 Number of hits 13
+ Event number 43 Number of hits 22
+ Event number 44 Number of hits 22
+ Event number 45 Number of hits 25
+ Event number 46 Number of hits 21
+ Event number 47 Number of hits 23
+ Event number 48 Number of hits 13
+ Event number 49 Number of hits 23
+ Event number 50 Number of hits 24
+ Event number 51 Number of hits 20
+ Event number 52 Number of hits 14
+ Event number 53 Number of hits 22
+ Event number 54 Number of hits 25
+ Event number 55 Number of hits 18
+ Event number 56 Number of hits 23
+ Event number 57 Number of hits 22
+ Event number 58 Number of hits 11
+ Event number 59 Number of hits 22
+ Event number 60 Number of hits 26
+ Event number 61 Number of hits 13
+ Event number 62 Number of hits 26
+ Event number 63 Number of hits 18
+ Event number 64 Number of hits 16
+ Event number 65 Number of hits 29
+ Event number 66 Number of hits 18
+ Event number 67 Number of hits 21
+ Event number 68 Number of hits 19
+ Event number 69 Number of hits 23
+ Event number 70 Number of hits 19
+ Event number 71 Number of hits 21
+ Event number 72 Number of hits 12
+ Event number 73 Number of hits 19
+ Event number 74 Number of hits 20
+ Event number 75 Number of hits 20
+ Event number 76 Number of hits 20
+ Event number 77 Number of hits 22
+ Event number 78 Number of hits 18
+ Event number 79 Number of hits 18
+ Event number 80 Number of hits 19
+ Event number 81 Number of hits 17
+ Event number 82 Number of hits 19
+ Event number 83 Number of hits 12
+ Event number 84 Number of hits 17
+ Event number 85 Number of hits 19
+ Event number 86 Number of hits 23
+ Event number 87 Number of hits 18
+ Event number 88 Number of hits 15
+ Event number 89 Number of hits 21
+ Event number 90 Number of hits 24
+ Event number 91 Number of hits 26
+ Event number 92 Number of hits 16
+ Event number 93 Number of hits 19
+ Event number 94 Number of hits 27
+ Event number 95 Number of hits 22
+ Event number 96 Number of hits 17
+ Event number 97 Number of hits 24
+ Event number 98 Number of hits 20
+ Event number 99 Number of hits 22
+Runtime: 159
 Number of Simulations: 1
 Modifying parameters
+Simulation test_proton complete
+next simulation:  test_alpha
+make: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[1]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[  0%] Built target update_root_include_path_install_interface
+[  0%] Built target update_root_include_path_build_interface
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[  7%] Built target AtField
+[  8%] Built target AtParameter
+[  9%] Built target AtSimulationData
+[ 10%] Built target AtPassive
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[ 21%] Built target AtData
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[ 23%] Built target AtTpc
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[ 31%] Built target AtSeGA
+[ 31%] Built target AtSiArray
+[ 32%] Built target AtApollo
+[ 33%] Built target AtAnalysis
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[ 38%] Built target AtS800
+[ 49%] Built target AtTools
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+Scanning dependencies of target AtGenerators
+[ 52%] Built target AtMap
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[ 53%] Building CXX object AtGenerators/CMakeFiles/AtGenerators.dir/AtTPC20MgDecay.cxx.o
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[ 70%] Built target AtUnpack
+[ 70%] Built target AtDigitization
+[ 86%] Built target AtReconstruction
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[ 95%] Built target AtEventDisplay
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/AtGenerators/AtTPC20MgDecay.cxx: In member function ‘virtual Bool_t AtTPC20MgDecay::ReadEvent(FairPrimaryGenerator*)’:
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/AtGenerators/AtTPC20MgDecay.cxx:52:7: error: ‘bra’ was not declared in this scope; did you mean ‘brk’?
+   52 |       bra=1;
+      |       ^~~
+      |       brk
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/AtGenerators/AtTPC20MgDecay.cxx:56:38: error: ‘i’ was not declared in this scope
+   56 |    pxAlpha=pxAlpha*fParticleEnergies[i]/AlphaMomentum;
+      |                                      ^
+make[2]: *** [AtGenerators/CMakeFiles/AtGenerators.dir/build.make:290: AtGenerators/CMakeFiles/AtGenerators.dir/AtTPC20MgDecay.cxx.o] Error 1
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[1]: *** [CMakeFiles/Makefile2:1397: AtGenerators/CMakeFiles/AtGenerators.dir/all] Error 2
+make[1]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make: *** [Makefile:160: all] Error 2
+make: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/compiled/ROOT2HDF/build'
+make[1]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/compiled/ROOT2HDF/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/compiled/ROOT2HDF/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/compiled/ROOT2HDF/build'
+[100%] Built target R2HExe
+make[1]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/compiled/ROOT2HDF/build'
+make: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/compiled/ROOT2HDF/build'
+Mg20_test_sim.C
+nohup: appending output to 'nohup.out'
+rundigi_sim.C
+nohup: appending output to 'nohup.out'
+Converting root files to h5
+ Opening File : /mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/output_digi.root
+ Number of events : 100
+ Event number 0 Number of hits 17
+ Event number 1 Number of hits 23
+ Event number 2 Number of hits 20
+ Event number 3 Number of hits 26
+ Event number 4 Number of hits 22
+ Event number 5 Number of hits 24
+ Event number 6 Number of hits 18
+ Event number 7 Number of hits 21
+ Event number 8 Number of hits 22
+ Event number 9 Number of hits 16
+ Event number 10 Number of hits 19
+ Event number 11 Number of hits 20
+ Event number 12 Number of hits 21
+ Event number 13 Number of hits 14
+ Event number 14 Number of hits 19
+ Event number 15 Number of hits 14
+ Event number 16 Number of hits 22
+ Event number 17 Number of hits 20
+ Event number 18 Number of hits 26
+ Event number 19 Number of hits 22
+ Event number 20 Number of hits 18
+ Event number 21 Number of hits 21
+ Event number 22 Number of hits 20
+ Event number 23 Number of hits 24
+ Event number 24 Number of hits 22
+ Event number 25 Number of hits 23
+ Event number 26 Number of hits 17
+ Event number 27 Number of hits 16
+ Event number 28 Number of hits 18
+ Event number 29 Number of hits 13
+ Event number 30 Number of hits 19
+ Event number 31 Number of hits 10
+ Event number 32 Number of hits 16
+ Event number 33 Number of hits 18
+ Event number 34 Number of hits 25
+ Event number 35 Number of hits 21
+ Event number 36 Number of hits 23
+ Event number 37 Number of hits 20
+ Event number 38 Number of hits 22
+ Event number 39 Number of hits 20
+ Event number 40 Number of hits 12
+ Event number 41 Number of hits 22
+ Event number 42 Number of hits 13
+ Event number 43 Number of hits 22
+ Event number 44 Number of hits 22
+ Event number 45 Number of hits 25
+ Event number 46 Number of hits 21
+ Event number 47 Number of hits 23
+ Event number 48 Number of hits 13
+ Event number 49 Number of hits 23
+ Event number 50 Number of hits 24
+ Event number 51 Number of hits 20
+ Event number 52 Number of hits 14
+ Event number 53 Number of hits 22
+ Event number 54 Number of hits 25
+ Event number 55 Number of hits 18
+ Event number 56 Number of hits 23
+ Event number 57 Number of hits 22
+ Event number 58 Number of hits 11
+ Event number 59 Number of hits 22
+ Event number 60 Number of hits 26
+ Event number 61 Number of hits 13
+ Event number 62 Number of hits 26
+ Event number 63 Number of hits 18
+ Event number 64 Number of hits 16
+ Event number 65 Number of hits 29
+ Event number 66 Number of hits 18
+ Event number 67 Number of hits 21
+ Event number 68 Number of hits 19
+ Event number 69 Number of hits 23
+ Event number 70 Number of hits 19
+ Event number 71 Number of hits 21
+ Event number 72 Number of hits 12
+ Event number 73 Number of hits 19
+ Event number 74 Number of hits 20
+ Event number 75 Number of hits 20
+ Event number 76 Number of hits 20
+ Event number 77 Number of hits 22
+ Event number 78 Number of hits 18
+ Event number 79 Number of hits 18
+ Event number 80 Number of hits 19
+ Event number 81 Number of hits 17
+ Event number 82 Number of hits 19
+ Event number 83 Number of hits 12
+ Event number 84 Number of hits 17
+ Event number 85 Number of hits 19
+ Event number 86 Number of hits 23
+ Event number 87 Number of hits 18
+ Event number 88 Number of hits 15
+ Event number 89 Number of hits 21
+ Event number 90 Number of hits 24
+ Event number 91 Number of hits 26
+ Event number 92 Number of hits 16
+ Event number 93 Number of hits 19
+ Event number 94 Number of hits 27
+ Event number 95 Number of hits 22
+ Event number 96 Number of hits 17
+ Event number 97 Number of hits 24
+ Event number 98 Number of hits 20
+ Event number 99 Number of hits 22
+Runtime: 185
+Number of Simulations: 2
+Modifying parameters
+Simulation test_alpha complete
+next simulation:  test_PA
+make: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[1]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[  0%] Built target update_root_include_path_build_interface
+[  1%] Built target update_root_include_path_install_interface
+[  6%] Built target AtField
+[  8%] Built target AtPassive
+[  8%] Built target AtParameter
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[ 18%] Built target AtSimulationData
+[ 21%] Built target AtData
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[ 22%] Built target AtAnalysis
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[ 26%] Built target AtTpc
+[ 31%] Built target AtS800
+[ 33%] Built target AtSeGA
+[ 35%] Built target AtSiArray
+[ 42%] Built target AtApollo
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[ 49%] Built target AtTools
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+Scanning dependencies of target AtGenerators
+[ 52%] Built target AtMap
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[ 60%] Built target AtUnpack
+[ 65%] Built target AtDigitization
+[ 85%] Built target AtReconstruction
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[ 94%] Built target AtEventDisplay
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+[ 95%] Building CXX object AtGenerators/CMakeFiles/AtGenerators.dir/AtTPC20MgDecay.cxx.o
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/AtGenerators/AtTPC20MgDecay.cxx:23:1: error: definition of explicitly-defaulted ‘AtTPC20MgDecay::AtTPC20MgDecay()’
+   23 | AtTPC20MgDecay::AtTPC20MgDecay()
+      | ^~~~~~~~~~~~~~
+In file included from /mnt/analysis/e17023/Adam/ATTPCROOTv2/AtGenerators/AtTPC20MgDecay.cxx:3:
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/AtGenerators/AtTPC20MgDecay.h:28:4: note: ‘AtTPC20MgDecay::AtTPC20MgDecay()’ explicitly defaulted here
+   28 |    AtTPC20MgDecay() = default;
+      |    ^~~~~~~~~~~~~~
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/AtGenerators/AtTPC20MgDecay.cxx:29:1: error: definition of explicitly-defaulted ‘AtTPC20MgDecay::~AtTPC20MgDecay()’
+   29 | AtTPC20MgDecay::~AtTPC20MgDecay() {}
+      | ^~~~~~~~~~~~~~
+In file included from /mnt/analysis/e17023/Adam/ATTPCROOTv2/AtGenerators/AtTPC20MgDecay.cxx:3:
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/AtGenerators/AtTPC20MgDecay.h:31:12: note: ‘virtual AtTPC20MgDecay::~AtTPC20MgDecay()’ explicitly defaulted here
+   31 |    virtual ~AtTPC20MgDecay() = default;
+      |            ^
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/AtGenerators/AtTPC20MgDecay.cxx: In member function ‘virtual Bool_t AtTPC20MgDecay::Init()’:
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/AtGenerators/AtTPC20MgDecay.cxx:34:1: error: no return statement in function returning non-void [-Werror=return-type]
+   34 | }
+      | ^
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/AtGenerators/AtTPC20MgDecay.cxx: At global scope:
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/AtGenerators/AtTPC20MgDecay.cxx:175:1: error: expected declaration before ‘}’ token
+  175 | }
+      | ^
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/AtGenerators/AtTPC20MgDecay.cxx:178:4: error: expected unqualified-id before ‘return’
+  178 |    return kTRUE;
+      |    ^~~~~~
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/AtGenerators/AtTPC20MgDecay.cxx:180:1: error: expected declaration before ‘}’ token
+  180 | }
+      | ^
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/AtGenerators/AtTPC20MgDecay.cxx: In member function ‘virtual Bool_t AtTPC20MgDecay::ReadEvent(FairPrimaryGenerator*)’:
+/mnt/analysis/e17023/Adam/ATTPCROOTv2/AtGenerators/AtTPC20MgDecay.cxx:171:73: error: control reaches end of non-void function [-Werror=return-type]
+  171 |  primGen->AddTrack(alphaPDGID, pxAlpha, pyAlpha, pzAlpha, fX, fY, fZ);}}}
+      |                                                                         ^
+cc1plus: some warnings being treated as errors
+make[2]: *** [AtGenerators/CMakeFiles/AtGenerators.dir/build.make:290: AtGenerators/CMakeFiles/AtGenerators.dir/AtTPC20MgDecay.cxx.o] Error 1
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make[1]: *** [CMakeFiles/Makefile2:1397: AtGenerators/CMakeFiles/AtGenerators.dir/all] Error 2
+make[1]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make: *** [Makefile:160: all] Error 2
+make: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/build'
+make: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/compiled/ROOT2HDF/build'
+make[1]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/compiled/ROOT2HDF/build'
+make[2]: Entering directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/compiled/ROOT2HDF/build'
+make[2]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/compiled/ROOT2HDF/build'
+[100%] Built target R2HExe
+make[1]: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/compiled/ROOT2HDF/build'
+make: Leaving directory '/mnt/analysis/e17023/Adam/ATTPCROOTv2/compiled/ROOT2HDF/build'
+Mg20_test_sim.C
+nohup: appending output to 'nohup.out'
+rundigi_sim.C
+nohup: appending output to 'nohup.out'
+Converting root files to h5
+ Opening File : /mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/output_digi.root
+ Number of events : 100
+ Event number 0 Number of hits 17
+ Event number 1 Number of hits 23
+ Event number 2 Number of hits 20
+ Event number 3 Number of hits 26
+ Event number 4 Number of hits 22
+ Event number 5 Number of hits 24
+ Event number 6 Number of hits 18
+ Event number 7 Number of hits 21
+ Event number 8 Number of hits 22
+ Event number 9 Number of hits 16
+ Event number 10 Number of hits 19
+ Event number 11 Number of hits 20
+ Event number 12 Number of hits 21
+ Event number 13 Number of hits 14
+ Event number 14 Number of hits 19
+ Event number 15 Number of hits 14
+ Event number 16 Number of hits 22
+ Event number 17 Number of hits 20
+ Event number 18 Number of hits 26
+ Event number 19 Number of hits 22
+ Event number 20 Number of hits 18
+ Event number 21 Number of hits 21
+ Event number 22 Number of hits 20
+ Event number 23 Number of hits 24
+ Event number 24 Number of hits 22
+ Event number 25 Number of hits 23
+ Event number 26 Number of hits 17
+ Event number 27 Number of hits 16
+ Event number 28 Number of hits 18
+ Event number 29 Number of hits 13
+ Event number 30 Number of hits 19
+ Event number 31 Number of hits 10
+ Event number 32 Number of hits 16
+ Event number 33 Number of hits 18
+ Event number 34 Number of hits 25
+ Event number 35 Number of hits 21
+ Event number 36 Number of hits 23
+ Event number 37 Number of hits 20
+ Event number 38 Number of hits 22
+ Event number 39 Number of hits 20
+ Event number 40 Number of hits 12
+ Event number 41 Number of hits 22
+ Event number 42 Number of hits 13
+ Event number 43 Number of hits 22
+ Event number 44 Number of hits 22
+ Event number 45 Number of hits 25
+ Event number 46 Number of hits 21
+ Event number 47 Number of hits 23
+ Event number 48 Number of hits 13
+ Event number 49 Number of hits 23
+ Event number 50 Number of hits 24
+ Event number 51 Number of hits 20
+ Event number 52 Number of hits 14
+ Event number 53 Number of hits 22
+ Event number 54 Number of hits 25
+ Event number 55 Number of hits 18
+ Event number 56 Number of hits 23
+ Event number 57 Number of hits 22
+ Event number 58 Number of hits 11
+ Event number 59 Number of hits 22
+ Event number 60 Number of hits 26
+ Event number 61 Number of hits 13
+ Event number 62 Number of hits 26
+ Event number 63 Number of hits 18
+ Event number 64 Number of hits 16
+ Event number 65 Number of hits 29
+ Event number 66 Number of hits 18
+ Event number 67 Number of hits 21
+ Event number 68 Number of hits 19
+ Event number 69 Number of hits 23
+ Event number 70 Number of hits 19
+ Event number 71 Number of hits 21
+ Event number 72 Number of hits 12
+ Event number 73 Number of hits 19
+ Event number 74 Number of hits 20
+ Event number 75 Number of hits 20
+ Event number 76 Number of hits 20
+ Event number 77 Number of hits 22
+ Event number 78 Number of hits 18
+ Event number 79 Number of hits 18
+ Event number 80 Number of hits 19
+ Event number 81 Number of hits 17
+ Event number 82 Number of hits 19
+ Event number 83 Number of hits 12
+ Event number 84 Number of hits 17
+ Event number 85 Number of hits 19
+ Event number 86 Number of hits 23
+ Event number 87 Number of hits 18
+ Event number 88 Number of hits 15
+ Event number 89 Number of hits 21
+ Event number 90 Number of hits 24
+ Event number 91 Number of hits 26
+ Event number 92 Number of hits 16
+ Event number 93 Number of hits 19
+ Event number 94 Number of hits 27
+ Event number 95 Number of hits 22
+ Event number 96 Number of hits 17
+ Event number 97 Number of hits 24
+ Event number 98 Number of hits 20
+ Event number 99 Number of hits 22
+Runtime: 212
+Number of Simulations: 3
+Modifying parameters
+Simulation test_PA complete
 STOP FILE CREATED
 Traceback (most recent call last):
-  File "/mnt/analysis/e17023/Adam/GADGET2/simInput/iter.py", line 77, in <module>
-    raise Exception('Could not find output file')
-Exception: Could not find output file
+  File "/mnt/analysis/e17023/Adam/GADGET2/simInput/iter.py", line 85, in <module>
+    raise Exception('Finished with all simulations')
+Exception: Finished with all simulations
 STOP.csv found, stopping Loop
