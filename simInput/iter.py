@@ -123,36 +123,38 @@ if E1 != 0:
 
 ParticleString = ParticleString.upper()
 
-# TEST FOR EXISTING GENERATOR FILE AND EDIT WITH PARTICLE ENERGIES
+
+# Determine order of particles for generator file and existance of file
+# allows for two-particle generators to be called in any order
 if os.path.isfile(automation_dir + 'simInput/templates/Generator' + ParticleString + '.txt'):
-    with open(automation_dir + 'simInput/templates/Generator' + ParticleString + '.txt', 'r') as file :
-        filedata = file.readlines()
-    
-    # locate and replace particle energies (Comment lines in generators with P0 E0 or P1 E1 to specify which line to replace)
-    for i, line in enumerate(filedata):
-        if 'P0 E0' in line.split('//')[-1]:
-            filedata[i] = line.split('=')[0] + '= ' + str(energy_to_momentum(E0, P0)) + '; // P0 E0\n'
-
-        if 'P1 E1' in line.split('//')[-1]:
-            filedata[i] = line.split('=')[0] + '= ' + str(energy_to_momentum(E1, P1)) + '; // P1 E1\n'
-
-    
-    # write file
-    with open(automation_dir + 'simInput/queue/AtTPC20MgDecay.cxx', 'w') as file:
-        file.writelines(filedata)
-
-else: # STOP SIMULATIONS, GENERATOR FILE DOES NOT EXIST
+    pass
+elif os.path.isfile(automation_dir + 'simInput/templates/Generator' + ParticleString[::-1] + '.txt'):
+    ParticleString = ParticleString[::-1]
+    P0 = parameters.loc[active_sim, 'P1']; E0 = parameters.loc[active_sim, 'E1']
+    P1 = parameters.loc[active_sim, 'P0']; E1 = parameters.loc[active_sim, 'E0']
+else:
     indicator_file('STOP')
     print('Generator file', ParticleString ,'does not exist')
-    raise Exception('Generator file does not exist')
+    raise Exception('Generator file not found')
+
+# TEST FOR EXISTING GENERATOR FILE AND EDIT WITH PARTICLE ENERGIES
+with open(automation_dir + 'simInput/templates/Generator' + ParticleString + '.txt', 'r') as file :
+    filedata = file.readlines()
+    
+# locate and replace particle energies (Comment lines in generators with P0 E0 or P1 E1 to specify which line to replace)
+for i, line in enumerate(filedata):
+    if 'P0 E0' in line.split('//')[-1]:
+        filedata[i] = line.split('=')[0] + '= ' + str(energy_to_momentum(E0, P0)) + '; // P0 E0\n'
+
+    if 'P1 E1' in line.split('//')[-1]:
+        filedata[i] = line.split('=')[0] + '= ' + str(energy_to_momentum(E1, P1)) + '; // P1 E1\n'
+
+# write file
+with open(automation_dir + 'simInput/queue/AtTPC20MgDecay.cxx', 'w') as file:
+    file.writelines(filedata)
 
 # %%
-# MODIFY Mg20_test_sim.C
-active_sim = 0
-
-P0 = parameters.loc[active_sim, 'P0']; E0 = parameters.loc[active_sim, 'E0']
-P1 = parameters.loc[active_sim, 'P1']; E1 = parameters.loc[active_sim, 'E1']
-
+# MODIFY Mg20_test_sim.C 
 with open(automation_dir + 'simInput/templates/Mg20_test_sim.txt', 'r') as file:
     filedata = file.readlines()
 
