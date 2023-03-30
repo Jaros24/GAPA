@@ -15,7 +15,7 @@ PadLayers:Int_t                112   #
 AnodeWirePlaneY:Double_t     -4.05   # mm
 GroundWirePlaneY:Double_t     -8.1   # mm
 GatingWirePlaneY:Double_t      -14   # mm
-EField:Double_t               5000   # V/m
+EField:Double_t               6000   # V/m
 NumTbs:Int_t                   512
 SamplingRate:Int_t             6.0   # Real value is 6.25 MHz
 DriftVelocity:Double_t        1.25   # cm/us
@@ -30,16 +30,16 @@ TB0:Int_t                       98   # Time Bucket reference for micromegas posi
 LorentzAngle:Double_t          0.0   # Lorentz Angle
 TBEntrance:Int_t               300   # Beam position at detector entrance in TB
 ZPadPlane:Double_t             490   # Position of the micromegas pad plane
-Density:Double_t             0.197   # Gas density (kg/m3 or mg/cm3)
+Density:Double_t             0.165   # Gas density (kg/m3 or mg/cm3)
 ThetaPad:Double_t            110.9   # AT-TPC pad plane rotation
 ThetaRot:Double_t              0.0   # Second Lorentz Angle
-GasPressure:Double_t           600   # Gas pressure in torr
-EIonize:Double_t            15.603   # Ionization energy of gas in eV
+GasPressure:Double_t           800   # Gas pressure in torr
+EIonize:Double_t              26.3   # Ionization energy of gas in eV
 Fano:Double_t                 0.24   # Fano factor of the gas
 CoefL:Double_t            0.000114   # Longitudal coefficient of diffusion [cm2/us]
-CoefT:Double_t             0.00037   # Transverse coefficient of diffusion [cm2/us]
-Gain:Double_t                10000   # Average gain of micromegas
-GETGain:Double_t              1000   # Gain of the GET electronics in fC
-PeakingTime:Int_t              720   # Electronic peaking time in ns
+CoefT:Double_t             0.00222   # Transverse coefficient of diffusion [cm2/us]
+Gain:Double_t                11000   # Average gain of micromegas
+GETGain:Double_t               120   # Gain of the GET electronics in fC
+PeakingTime:Int_t             1014   # Electronic peaking time in ns
 MaxRange:Double_t            500.0   # Maximum range from Beam energy in mm
 ################################################################################
