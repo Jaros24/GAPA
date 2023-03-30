@@ -61,7 +61,8 @@ Bool_t AtTPC20MgDecay::ReadEvent(FairPrimaryGenerator *primGen)
 
       // If the random number is less than or equal to the sum of the branching ratios for alpha particles,
       // generate an alpha particle.
-      if (bra <= 0) {
+      bra=1;
+      if (bra<=1) {
          primGen->AddTrack(alphaPDGID, pxAlpha, pyAlpha, pzAlpha, fX, fY, fZ);
       }
    }
