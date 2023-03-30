@@ -1,0 +1,97 @@
+#include "AtTPC20MgDecay.h"
+
+#include <FairLogger.h> // for Logger, LOG
+#include <FairPrimaryGenerator.h>
+
+#include <TF1.h>
+#include <TH1.h>
+#include <TMath.h>
+#include <TRandom.h>
+
+#include <cmath>    // for acos
+#include <iostream> // for operator<<, endl, basic_ostream, cout
+#include <memory>   // for make_unique, unique_ptr
+
+Bool_t AtTPC20MgDecay::Init()
+{
+   // Initialize generator
+   return true;
+}
+
+// -----   Public method ReadEvent   --------------------------------------
+Bool_t AtTPC20MgDecay::ReadEvent(FairPrimaryGenerator *primGen)
+{
+   if (fBoxVtxIsSet) {
+      fX = gRandom->Uniform(fX1, fX2);
+      fY = gRandom->Uniform(fY1, fY2);
+      fZ = gRandom->Uniform(fZ1, fZ2);
+   }
+
+   // Proton of 1210keV and alpha of 506keV
+   Int_t protonPDGID = 2212;
+   Int_t alphaPDGID = 1000020040;
+   Int_t gammaPDGID =22;
+   Int_t betaPDGID =11;
+
+   Double32_t ptAlpha1 = 0, pxAlpha1 = 0, pyAlpha1 = 0, pzAlpha1 = 0;
+   Double32_t pabsAlpha1 = 0.0470; // P0 E0
+   Double32_t bra1=1;
+   Double32_t thetaAlpha1 = acos(gRandom->Uniform(-1, 1));
+   Double32_t phiAlpha1 = gRandom->Uniform(0, 360) * TMath::DegToRad();
+   pzAlpha1 = pabsAlpha1 * TMath::Cos(thetaAlpha1);
+   ptAlpha1 = pabsAlpha1 * TMath::Sin(thetaAlpha1);
+   pxAlpha1 = ptAlpha1 * TMath::Cos(phiAlpha1);
+   pyAlpha1 = ptAlpha1 * TMath::Sin(phiAlpha1);
+
+   Double32_t ptAlpha2 = 0, pxAlpha2 = 0, pyAlpha2 = 0, pzAlpha2 = 0;
+   Double32_t pabsAlpha2 = 0.06162; // P1 E1
+   Double32_t bra2=1;
+   Double32_t thetaAlpha2 = acos(gRandom->Uniform(-1, 1));
+   Double32_t phiAlpha2 = gRandom->Uniform(0, 360) * TMath::DegToRad();
+   pzAlpha2 = pabsAlpha2 * TMath::Cos(thetaAlpha2);
+   ptAlpha2 = pabsAlpha2 * TMath::Sin(thetaAlpha2);
+   pxAlpha2 = ptAlpha2 * TMath::Cos(phiAlpha2);
+   pyAlpha2 = ptAlpha2 * TMath::Sin(phiAlpha2);
+
+
+   if (fNuclearDecayChainIsSet){
+
+	if(!protonPDGID == 2212)
+		LOG(fatal)<<"AtTPC20MgDecayGenerator:PDG code"<<protonPDGID<<"is not a proton!";
+//if(protonPDGID == 2212)	
+      brp=gRandom->Uniform(0,1);
+
+for (Int_t i =0; i<fParticlesDefinedInNuclearDecay; i++){
+if(bra1<=1){
+			Double32_t Alpha1Momentum = TMath::Sqrt(pxAlpha1*pxAlpha1+pyAlpha1*pyAlpha1+pzAlpha1*pzAlpha1);
+			pxAlpha1=pxAlpha1*fParticleEnergies[i]/Alpha1Momentum;
+			pyAlpha1=pyAlpha1*fParticleEnergies[i]/Alpha1Momentum;
+			pzAlpha1=pzAlpha1*fParticleEnergies[i]/Alpha1Momentum;}
+if(bra2<=1){
+			Double32_t Alpha2Momentum = TMath::Sqrt(pxAlpha2*pxAlpha2+pyAlpha2*pyAlpha2+pzAlpha2*pzAlpha2);
+			pxAlpha2=pxAlpha2*fParticleEnergies[i]/Alpha2Momentum;
+			pyAlpha2=pyAlpha2*fParticleEnergies[i]/Alpha2Momentum;
+			pzAlpha2=pzAlpha2*fParticleEnergies[i]/Alpha2Momentum;}
+}
+
+
+   primGen->AddTrack(22, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); // dummy photon for track ID 0
+   if(bra1<=1){
+   primGen->AddTrack(alphaPDGID, pxAlpha1,pyAlpha1,pzAlpha1,fX,fY,fZ);}
+
+   if(bra2<=1){
+   primGen->AddTrack(alphaPDGID, pxAlpha2, pyAlpha2, pzAlpha2, fX, fY, fZ);}
+
+}
+   return kTRUE;
+}
+
+void AtTPC20MgDecay::SetDecayChainPoint(Double32_t ParticleEnergy, Double32_t ParticleBranchingRatio)
+{
+	for(Int_t i =0; i<fParticlesDefinedInNuclearDecay;i++){
+		fParticleEnergies[i]=ParticleEnergy;
+		fParticleBranchingRatios[i]=ParticleBranchingRatio;	
+}
+}
+
+ClassImp(AtTPC20MgDecay)
