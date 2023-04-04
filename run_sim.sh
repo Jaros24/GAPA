@@ -9,7 +9,7 @@ start=`date +%s`
 iterations=0
 
 # mark if debug mode
-debug=0
+debug=1
 
 # if debug, overwrite parameters with test parameters
 if [ $debug -eq 1 ]; then
@@ -20,6 +20,8 @@ fi
 # load prerequisites
 source $attpcroot_dir"env_fishtank.sh"
 module load fairroot/18.6.3
+
+cp -f $automation_dir"simInput/templates/R2HMain.cc" $attpcroot_dir"compiled/ROOT2HDF/R2HMain.cc"
 
 while true; do
 	# modify parameters and rename old h5
