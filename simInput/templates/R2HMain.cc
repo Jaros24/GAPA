@@ -1,5 +1,5 @@
 #include "R2HMain.hh"
-
+void usage();
 int main(int argc, char *argv[])
 {
    if (argc != 2) {
@@ -9,8 +9,8 @@ int main(int argc, char *argv[])
    }
 
    FairRunAna *run = new FairRunAna(); // Forcing a dummy run
+   // TString FileName = argv[1];
    TString FileName = argv[1];
-
    std::cout << " Opening File : " << FileName.Data() << std::endl;
    TFile *file = new TFile(FileName.Data(), "READ");
 
@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
    TTreeReaderValue<TClonesArray> eventArray(Reader1, "AtEventH");
 
    const int RANK = 1;
-   const H5std_string FILE_NAME("output.h5");
+   const H5std_string FILE_NAME("output_paraApril2.h5");
 
    H5File *HDFfile = new H5File(FILE_NAME, H5F_ACC_TRUNC);
 
@@ -39,6 +39,10 @@ int main(int argc, char *argv[])
 
       hsize_t dim[] = {(hsize_t)nHits}; /* Dataspace dimensions */
       DataSpace space(RANK, dim);
+      
+      H5std_string DATASET_NAME_TEST(Form("Trace_[%i]", i));
+      hsize_t dim2[] = {(hsize_t)512}; /* Dataspace dimensions */
+      DataSpace space2(RANK, dim2);
 
       ATHit_t hits[nHits];
 
@@ -52,8 +56,8 @@ int main(int argc, char *argv[])
          hits[iHit].z = hitPos.Z();
          hits[iHit].t = hit.GetTimeStamp();
          hits[iHit].A = hit.GetCharge();
-
-         /*if (MCPoints.size() > 0) { // N.B. Only one MC hit information is saved.
+         hits[iHit].PadNum= hit.GetPadNum();
+         if (MCPoints.size() > 0) { // N.B. Only one MC hit information is saved.
             hits[iHit].trackID = MCPoints.at(0).trackID;
             hits[iHit].pointIDMC = MCPoints.at(0).pointID;
             hits[iHit].energyMC = MCPoints.at(0).energy;
@@ -61,7 +65,8 @@ int main(int argc, char *argv[])
             hits[iHit].angleMC = MCPoints.at(0).angle;
             hits[iHit].AMC = MCPoints.at(0).A;
             hits[iHit].ZMC = MCPoints.at(0).Z;
-       }*/
+            
+       }
          // std::cout<<hits[iHit].x<<"\n";
          // std::cout<<" MC points size "<<MCPoints.size()<<"\n";
       }
@@ -79,13 +84,22 @@ int main(int argc, char *argv[])
       mtype1.insertMember(MEMBER10, HOFFSET(ATHit_t, angleMC), PredType::NATIVE_DOUBLE);
       mtype1.insertMember(MEMBER11, HOFFSET(ATHit_t, AMC), PredType::NATIVE_INT);
       mtype1.insertMember(MEMBER12, HOFFSET(ATHit_t, ZMC), PredType::NATIVE_INT);
-
+      mtype1.insertMember(MEMBER13, HOFFSET(ATHit_t, PadNum), PredType::NATIVE_INT);
       DataSet *dataset;
       dataset = new DataSet(HDFfile->createDataSet(DATASET_NAME, mtype1, space));
 
       dataset->write(hits, mtype1);
 
       delete dataset;
+      DataSet *dataset1;
+      dataset1 = new DataSet(HDFfile->createDataSet(DATASET_NAME_TEST, PredType::NATIVE_FLOAT, space2));
+      
+	
+	for(int i = 0 ; i < 512;++i)
+      std::cout << i << " " << event->GetMesh()[i] << std::endl;
+      //dataset1->write(event->GetMesh(), PredType::NATIVE_DOUBLE);
+      dataset1->write(event->GetMesh().data(), PredType::NATIVE_FLOAT); 
+      delete dataset1;
    }
 
    delete HDFfile;
@@ -97,3 +111,4 @@ void usage()
 {
    std::cout << "Usage: ./R2HExe fileToConvert" << std::endl;
 }
+
