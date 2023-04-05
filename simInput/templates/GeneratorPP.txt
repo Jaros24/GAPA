@@ -76,7 +76,7 @@ if(brp2<=1){
 
 
    primGen->AddTrack(22, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); // dummy photon for track ID 0
-   if(brp<=1){
+   if(brp1<=1){
    primGen->AddTrack(protonPDGID, pxProton1,pyProton1,pzProton1,fX,fY,fZ);}
 
    if(brp2<=1){
