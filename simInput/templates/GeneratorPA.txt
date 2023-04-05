@@ -59,7 +59,7 @@ Bool_t AtTPC20MgDecay::ReadEvent(FairPrimaryGenerator *primGen)
 	if(!protonPDGID == 2212)
 		LOG(fatal)<<"AtTPC20MgDecayGenerator:PDG code"<<protonPDGID<<"is not a proton!";
 //if(protonPDGID == 2212)	
-      brp=gRandom->Uniform(0,1);
+//      brp=gRandom->Uniform(0,1);
 
 for (Int_t i =0; i<fParticlesDefinedInNuclearDecay; i++){
 if(brp<=1){
