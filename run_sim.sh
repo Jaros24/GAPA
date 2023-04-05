@@ -22,6 +22,7 @@ source $attpcroot_dir"env_fishtank.sh"
 module load fairroot/18.6.3
 
 cp -f $automation_dir"simInput/templates/R2HMain.cc" $attpcroot_dir"compiled/ROOT2HDF/R2HMain.cc"
+cp -f $automation_dir"simInput/templates/R2HMain.hh" $attpcroot_dir"compiled/ROOT2HDF/R2HMain.hh"
 
 while true; do
 	# modify parameters and rename old h5

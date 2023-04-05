@@ -75,7 +75,8 @@ typedef struct ATHit_t {
     double    elossMC;
     double    angleMC;	
     int       AMC;
-    int       ZMC; 
+    int       ZMC;
+    int       PadNum; 
 
 } ATHit_t;
 
@@ -91,6 +92,7 @@ const H5std_string MEMBER9( "elossMC" );
 const H5std_string MEMBER10( "angleMC" );
 const H5std_string MEMBER11( "AMC" );
 const H5std_string MEMBER12( "ZMC" );
+const H5std_string MEMBER13( "PadNum" );
 
 
 using namespace H5;

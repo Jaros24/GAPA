@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
    TTreeReaderValue<TClonesArray> eventArray(Reader1, "AtEventH");
 
    const int RANK = 1;
-   const H5std_string FILE_NAME("output_paraApril2.h5");
+   const H5std_string FILE_NAME("output.h5");
 
    H5File *HDFfile = new H5File(FILE_NAME, H5F_ACC_TRUNC);
 
