@@ -9,12 +9,16 @@ start=`date +%s`
 iterations=0
 
 # mark if debug mode
-debug=1
+debug=0
 
 # if debug, overwrite parameters with test parameters
 if [ $debug -eq 1 ]; then
     echo "Debug mode, overwriting parameters file with test parameters"
     cp $automation_dir"simInput/test-parameters.csv" $automation_dir"simInput/parameters.csv"
+fi
+
+if [ $debug -eq 0 ]; then
+    python3 $automation_dir"simInput/create-param.py"
 fi
 
 # load prerequisites

@@ -4,6 +4,8 @@ import pandas as pd
 import math
 import random
 
+automation_dir = '/mnt/analysis/e17023/Adam/GADGET2/'
+
 # set the seed for reproducibility
 seed = input("Random Number Seed: ")
 if seed == '':
@@ -79,7 +81,7 @@ print("Simulations Label: ", simName)
 
 param_dict = {}
 
-with open('templates/GADGET.sim.par') as f:
+with open(automation_dir + 'simInput/templates/GADGET.sim.par') as f:
     lines = f.readlines()
 for i in range(len(lines)):
     # if line is commented, skip
@@ -162,10 +164,12 @@ else:
 # if two numbers are specified, the first is the base, and the second is the variation
 
 differing_params = []
+print('Format for specifying variation:')
+print('if base value is default, only specify variation')
+print('if base value is not default, specify base value then variation separated by a space')
 
 for param in param_dict.keys():
-    print(param, ': ', param_dict[param][0])
-    var = input(str(param) + ": ")
+    var = input(str(param) + ": " + str(param_dict[param][0]) + " variation: ") 
     if var != '':
         var = var.split()
         differing_params.append(param)
@@ -180,7 +184,7 @@ for param in param_dict.keys():
 if overwrite:
     param_df = pd.DataFrame(columns=['Sim', 'Status', 'N', 'P0', 'E0', 'P1', 'E1', 'Xb', 'Yb', 'Zb1', 'Zb2', 'Threshold'])
 else:
-    param_df = pd.read_csv('parameters.csv')
+    param_df = pd.read_csv(automation_dir + 'simInput/parameters.csv')
 
 var_type = input("Variation type (uniform, normal, triangular): ")
 if var_type == '':
@@ -223,7 +227,7 @@ for param in param_dict.keys():
     
 
 # %%
-param_df.to_csv('parameters-test.csv', index=False)
+param_df.to_csv(automation_dir + 'simInput/parameters.csv', index=False)
 
 # %%
 
