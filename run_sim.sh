@@ -52,11 +52,11 @@ while true; do
             #echo "BUILD.csv found, rebuilding ATTPCROOT"
             #rm $automation_dir"BUILD.csv"
 
-        # build ATTPCROOT - commented for testing
-        #make -C $attpcroot_dir"build/" -j8
+        # build ATTPCROOT
+        make -C $attpcroot_dir"build/" -j8
 
-        # build ROOT2HDF - commented for testing
-        #make -C $attpcroot_dir"compiled/ROOT2HDF/build/"
+        # build ROOT2HDF
+        make -C $attpcroot_dir"compiled/ROOT2HDF/build/"
         #fi
         
         
