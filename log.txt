@@ -1,7 +1,0 @@
-PA generator error:
-
-/mnt/analysis/e17023/Adam/ATTPCROOTv2/AtGenerators/AtTPC20MgDecay.cxx:62:7: error: ‘brp’ was not declared in this scope; did you mean ‘brk’?
-   62 |       brp=gRandom->Uniform(0,1);
-      |       ^~~
-      |       brk
-make[2]: *** [AtGenerators/CMakeFiles/AtGenerators.dir/build.make:290: AtGenerators/CMakeFiles/AtGenerators.dir/AtTPC20MgDecay.cxx.o] Error 1
