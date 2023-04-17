@@ -8,26 +8,18 @@ automation_dir=/mnt/analysis/e17023/Adam/GADGET2/
 start=`date +%s`
 iterations=0
 
-# mark if debug mode
-debug=0
+# create parameters file using script
+python3 $automation_dir"simInput/create-param.py"
 
-# if debug, overwrite parameters with test parameters
-if [ $debug -eq 1 ]; then
-    echo "Debug mode, overwriting parameters file with test parameters"
-    cp $automation_dir"simInput/test-parameters.csv" $automation_dir"simInput/parameters.csv"
-fi
 
-if [ $debug -eq 0 ]; then
-    python3 $automation_dir"simInput/create-param.py"
-fi
-
-# load prerequisites
+# load prerequisites for ATTPCROOT
 source $attpcroot_dir"env_fishtank.sh"
 module load fairroot/18.6.3
 
 cp -f $automation_dir"simInput/templates/R2HMain.cc" $attpcroot_dir"compiled/ROOT2HDF/R2HMain.cc"
 cp -f $automation_dir"simInput/templates/R2HMain.hh" $attpcroot_dir"compiled/ROOT2HDF/R2HMain.hh"
 
+# run simulation loop
 while true; do
 	# modify parameters and rename old h5
     echo "Modifying parameters"
