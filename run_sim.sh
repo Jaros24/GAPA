@@ -2,6 +2,8 @@
 
 # set paths for ATTPCROOT and Automation scripts
 automation_dir=$PWD #/mnt/analysis/e17023/Adam/GADGET2/
+automation_dir=$(readlink -f "$automation_dir" | sed 's:\([^/]\)$:\1/:') # add trailing slash if not present
+
 read -p "Enter full ATTPCROOT directory: " attpcroot_dir
 #attpcroot_dir="/mnt/analysis/e17023/Adam/ATTPCROOT/"
 
@@ -78,23 +80,15 @@ while true; do
         
         
         # run simulation        
-        if [ $debug -eq 1 ]; then
-
-            echo "Mg20_test_sim.C"
-            root -b -l $attpcroot_dir"macro/Simulation/GADGET/Mg20_test_sim.C"
-            echo "rundigi_sim.C"
-            root -b -l $attpcroot_dir"macro/Simulation/GADGET/rundigi_sim.C"
-        else
-            echo "Mg20_test_sim.C"
-            nohup root -b -l $attpcroot_dir"macro/Simulation/GADGET/Mg20_test_sim.C" &
-            pid1=$!
-            wait $pid1
-            
-            echo "rundigi_sim.C"
-            nohup root -b -l $attpcroot_dir"macro/Simulation/GADGET/rundigi_sim.C" &
-            pid2=$!
-            wait $pid2
-        fi
+        echo "Mg20_test_sim.C"
+        nohup root -b -l $attpcroot_dir"macro/Simulation/GADGET/Mg20_test_sim.C" &
+        pid1=$!
+        wait $pid1
+        
+        echo "rundigi_sim.C"
+        nohup root -b -l $attpcroot_dir"macro/Simulation/GADGET/rundigi_sim.C" &
+        pid2=$!
+        wait $pid2
 
         # convert root files to h5
         echo "Converting root files to h5"
@@ -114,14 +108,14 @@ echo "Runtime: $runtime"
 echo "Number of Simulations: $iterations"
 
 # clean up files
-rm -f $automation_dir"simInput/iter-params.py"
-rm -f $automation_dir"simInput/create-params.py"
-rm -f $automation_dir"nohup.out"
+#rm -f $automation_dir"simInput/iter-params.py"
+#rm -f $automation_dir"simInput/create-params.py"
+#rm -f $automation_dir"nohup.out"
 
 # move parameters.csv to simOutput
-mv -f $automation_dir"simInput/parameters.csv" $automation_dir"simOutput/parameters.csv"
+#mv -f $automation_dir"simInput/parameters.csv" $automation_dir"simOutput/parameters.csv"
 
 # zip simOutput, named with date and time
-zip -r $automation_dir"simOutput/$(date +%Y-%m-%d_%H-%M-%S).zip" $automation_dir"simOutput/"
+#zip -r $automation_dir"simOutput/$(date +%Y-%m-%d_%H-%M-%S).zip" $automation_dir"simOutput/"
 
 done

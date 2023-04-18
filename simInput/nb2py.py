@@ -3,8 +3,12 @@ import sys
 import json
 
 def convert_notebook_to_script(notebook_dir):
+    # Remove the .ipynb extension if it is present
+    if notebook_dir.endswith(".ipynb"):
+        notebook_dir = os.path.splitext(notebook_dir)[0]
+    
     # Check if the notebook file exists
-    notebook_file = os.path.join(notebook_dir, notebook_dir.split("/")[-1] + ".ipynb")
+    notebook_file = notebook_dir + ".ipynb"
     if not os.path.isfile(notebook_file):
         print(f"Notebook file {notebook_file} does not exist.")
         return
@@ -17,15 +21,17 @@ def convert_notebook_to_script(notebook_dir):
     code_cells = [cell for cell in notebook["cells"] if cell["cell_type"] == "code"]
     
     # Create a Python script file with the same name as the notebook
-    script_file = os.path.join(notebook_dir, notebook_dir.split("/")[-1] + ".py")
+    script_file = notebook_dir + ".py"
     
     # Write the code cells to the Python script file
     with open(script_file, "w") as f:
         for cell in code_cells:
-            source = cell["source"].strip()
-            if source:
-                f.write(source)
-                f.write("\n\n")
+            # Concatenate all the strings in the cell["source"] list
+            source = "".join(cell["source"])
+            if source.strip() == "":
+                continue
+            f.write(source)
+            f.write("\n\n")
     
     print(f"Notebook {notebook_file} converted to Python script {script_file}.")
 
