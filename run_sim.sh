@@ -1,16 +1,23 @@
 #!/bin/bash
 
 # set paths for ATTPCROOT and Automation scripts
-attpcroot_dir=/mnt/analysis/e17023/Adam/ATTPCROOTv2/
-automation_dir=/mnt/analysis/e17023/Adam/GADGET2/
+automation_dir=$PWD #/mnt/analysis/e17023/Adam/GADGET2/
+read -p "Enter full ATTPCROOT directory: " attpcroot_dir
+#attpcroot_dir="/mnt/analysis/e17023/Adam/ATTPCROOT/"
 
-# start timer
-start=`date +%s`
-iterations=0
+# check if ATTPCROOT directory exists and contains env_fishtank.sh
+attpcroot_dir=$(readlink -f "$attpcroot_dir" | sed 's:\([^/]\)$:\1/:') # add trailing slash if not present
+if [ ! -f $attpcroot_dir"env_fishtank.sh" ]; then
+    echo "specified ATTPCROOT directory is invalid"
+    exit 1
+fi
+
+# convert ipynb to py using custom script
+python3 $automation_dir"simInput/nb2py.py" $automation_dir"simInput/iter-params.ipynb"
+python3 $automation_dir"simInput/nb2py.py" $automation_dir"simInput/create-params.ipynb"
 
 # create parameters file using script
-python3 $automation_dir"simInput/create-param.py"
-
+python3 $automation_dir"simInput/create-params.py"
 
 # load prerequisites for ATTPCROOT
 source $attpcroot_dir"env_fishtank.sh"
@@ -19,11 +26,16 @@ module load fairroot/18.6.3
 cp -f $automation_dir"simInput/templates/R2HMain.cc" $attpcroot_dir"compiled/ROOT2HDF/R2HMain.cc"
 cp -f $automation_dir"simInput/templates/R2HMain.hh" $attpcroot_dir"compiled/ROOT2HDF/R2HMain.hh"
 
+# start timer
+start=`date +%s`
+iterations=0
+
+
 # run simulation loop
 while true; do
 	# modify parameters and rename old h5
     echo "Modifying parameters"
-	python3 $automation_dir"simInput/iter.py"
+	python3 $automation_dir"simInput/iter-params.py" $attpcroot_dir
 
     if [ -f $automation_dir"STOP.csv" ]; then
         # Delete STOP.csv and break loop
