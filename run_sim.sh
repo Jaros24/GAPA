@@ -12,17 +12,30 @@ if [ ! -f $attpcroot_dir"env_fishtank.sh" ]; then
     exit 1
 fi
 
-# convert ipynb to py using custom script
+# convert ipynb to py
 python3 $automation_dir"simInput/nb2py.py" $automation_dir"simInput/iter-params.ipynb"
 python3 $automation_dir"simInput/nb2py.py" $automation_dir"simInput/create-params.ipynb"
 
-# create parameters file using script
-python3 $automation_dir"simInput/create-params.py"
+# prompt user for parameters file (generate or use existing)
+read -p "Generate new parameters? (y/n): " new_params
+if [ $new_params == "y" ]; then
+    python3 $automation_dir"simInput/create-params.py"
+else 
+    echo "Using existing parameters.csv"
+fi
+
+# test for parameters.csv
+if [ ! -f $automation_dir"simInput/parameters.csv" ]; then
+    echo "parameters.csv not found"
+    exit 1
+fi
+
 
 # load prerequisites for ATTPCROOT
 source $attpcroot_dir"env_fishtank.sh"
 module load fairroot/18.6.3
 
+# send updated R2HMain.cc and R2HMain.hh to ATTPCROOT (have fix for trace and event data not present in stock version)
 cp -f $automation_dir"simInput/templates/R2HMain.cc" $attpcroot_dir"compiled/ROOT2HDF/R2HMain.cc"
 cp -f $automation_dir"simInput/templates/R2HMain.hh" $attpcroot_dir"compiled/ROOT2HDF/R2HMain.hh"
 
@@ -35,7 +48,7 @@ iterations=0
 while true; do
 	# modify parameters and rename old h5
     echo "Modifying parameters"
-	python3 $automation_dir"simInput/iter-params.py" $attpcroot_dir
+	python3 $automation_dir"simInput/iter-params.py" $automation_dir $attpcroot_dir
 
     if [ -f $automation_dir"STOP.csv" ]; then
         # Delete STOP.csv and break loop
@@ -99,4 +112,16 @@ end=`date +%s`
 runtime=$((end-start))
 echo "Runtime: $runtime"
 echo "Number of Simulations: $iterations"
+
+# clean up files
+rm -f $automation_dir"simInput/iter-params.py"
+rm -f $automation_dir"simInput/create-params.py"
+rm -f $automation_dir"nohup.out"
+
+# move parameters.csv to simOutput
+mv -f $automation_dir"simInput/parameters.csv" $automation_dir"simOutput/parameters.csv"
+
+# zip simOutput, named with date and time
+zip -r $automation_dir"simOutput/$(date +%Y-%m-%d_%H-%M-%S).zip" $automation_dir"simOutput/"
+
 done
