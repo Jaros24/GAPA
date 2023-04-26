@@ -25,7 +25,7 @@ if [ $sim_type -eq "0" ]; then
     # prompt user for parameters file (generate or use existing)
     read -p "Generate new parameters? (y/n): " new_params
     if [ $new_params == "y" ]; then
-        python3 $automation_dir"simInput/create-params.py"
+        python3 $automation_dir"simInput/create-params.py" $automation_dir
     else 
         echo "Using existing parameters.csv"
     fi

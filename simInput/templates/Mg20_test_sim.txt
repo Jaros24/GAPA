@@ -2,12 +2,10 @@ void Mg20_test_sim(Int_t nEvents = 100, TString mcEngine = "TGeant4"){
 
    TString dir = getenv("VMCWORKDIR");
 
-   // Output file name
-   TString outFile = "/mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/data/gadgetsim.root";
+   TString outFile = "/mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/data/gadgetsim.root"; // Output file name
 
-   // Parameter file name
-   TString parFile = "/mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/data/gadgetpar.root";
-
+   TString parFile = "/mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/data/gadgetpar.root"; // Parameter file name
+ 
    // -----   Timer   --------------------------------------------------------
    TStopwatch timer;
    timer.Start();
@@ -86,7 +84,7 @@ void Mg20_test_sim(Int_t nEvents = 100, TString mcEngine = "TGeant4"){
    run->Run(nEvents);
 
    // You can export your ROOT geometry ot a separate file
-   run->CreateGeometryFile("/mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/data/geofile_proto_full.root");
+   run->CreateGeometryFile("/mnt/analysis/e17023/Adam/ATTPCROOTv2/macro/Simulation/GADGET/data/geofile_proto_full.root"); // GeoFile location
    // ------------------------------------------------------------------------
 
    // -----   Finish   -------------------------------------------------------
