@@ -1,17 +1,25 @@
 #!/bin/bash
 
 # set paths for ATTPCROOT and Automation scripts
-automation_dir=$PWD #/mnt/analysis/e17023/Adam/GADGET2/
+automation_dir=$(dirname "$(readlink -f "$0")") # get parent directory of script
 automation_dir=$(readlink -f "$automation_dir" | sed 's:\([^/]\)$:\1/:') # add trailing slash if not present
 
-read -p "Enter full ATTPCROOT directory: " attpcroot_dir
-#attpcroot_dir="/mnt/analysis/e17023/Adam/ATTPCROOT/"
+# test for ATTPCROOT in same directory as automation scripts
+attpcroot_dir="$automation_dir/../ATTPCROOTv2" # set ATTPCROOT path relative to script location
+attpcroot_dir=$(readlink -f "$attpcroot_dir")
+attpcroot_dir="${attpcroot_dir%/GADGET2/..}"
 
 # check if ATTPCROOT directory exists and contains env_fishtank.sh
-attpcroot_dir=$(readlink -f "$attpcroot_dir" | sed 's:\([^/]\)$:\1/:') # add trailing slash if not present
-if [ ! -f $attpcroot_dir"env_fishtank.sh" ]; then
-    echo "specified ATTPCROOT directory is invalid"
-    exit 1
+if [ ! -d "$attpcroot_dir" ] || [ ! -f "$attpcroot_dir/env_fishtank.sh" ]; then
+    read -p "Enter full ATTPCROOT directory: " attpcroot_dir
+    attpcroot_dir=$(readlink -f "$attpcroot_dir" | sed 's:\([^/]\)$:\1/:') # add trailing slash if not present
+    if [ ! -d "$attpcroot_dir" ] || [ ! -f "$attpcroot_dir/env_fishtank.sh" ]; then
+        echo "specified ATTPCROOT directory is invalid"
+        exit 1
+    fi
+else
+    attpcroot_dir=$(readlink -f "$attpcroot_dir" | sed 's:\([^/]\)$:\1/:') # add trailing slash if not present
+    echo "ATTPCROOT directory found automatically at $attpcroot_dir"
 fi
 
 # ask for type of simulation loop to run
@@ -117,13 +125,15 @@ if [ $sim_type -eq "0" ]; then
     rm -f $automation_dir"simInput/create-params.py"
     rm -f $automation_dir"nohup.out"
 
-    # move parameters.csv to simOutput
-    #mv -f $automation_dir"simInput/parameters.csv" $automation_dir"simOutput/parameters.csv"
+    # copy parameters.csv to simOutput
+    cp -f $automation_dir"simInput/parameters.csv" $automation_dir"simOutput/parameters.csv"
 
     # zip simOutput, named with date and time
     #zip -r $automation_dir"simOutput/$(date +%Y-%m-%d_%H-%M-%S).zip" $automation_dir"simOutput/"
+
 elif [ $sim_type -eq "1" ]; then
     echo "Tuning not yet implemented"
+    
 else
     echo "Invalid simulation type"
 fi

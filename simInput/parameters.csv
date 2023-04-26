@@ -1,4 +1,2 @@
-Sim,Status,N,P0,E0,P1,E1,Xb,Yb,Zb1,Zb2,Threshold,CoefT
-testing0-800p,2,10,p,800.0,a,0.0,0,0,10,40,20,0.00226
-testing1-800p,2,10,p,800.0,a,0.0,0,0,10,40,20,0.00263
-testing2-800p,2,10,p,800.0,a,0.0,0,0,10,40,20,0.00236
+Sim,Status,N,P0,E0,P1,E1,Xb,Yb,Zb1,Zb2,Threshold
+test-800p,2,5,p,800.0,a,0.0,0,0,10,40,20
