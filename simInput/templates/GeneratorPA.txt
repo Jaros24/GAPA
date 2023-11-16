@@ -15,6 +15,7 @@
 Bool_t AtTPC20MgDecay::Init()
 {
    // Initialize generator
+   gRandom->SetSeed(12345); // Seed
    return true;
 }
 

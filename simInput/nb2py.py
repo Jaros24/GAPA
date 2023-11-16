@@ -33,7 +33,7 @@ def convert_notebook_to_script(notebook_dir):
             f.write(source)
             f.write("\n\n")
     
-    print(f"Notebook {notebook_file} converted to Python script {script_file}.")
+    #print(f"Notebook {notebook_file} converted to Python script {script_file}.")
 
 if __name__ == "__main__":
     # Get the directory of the notebook file from the command line argument

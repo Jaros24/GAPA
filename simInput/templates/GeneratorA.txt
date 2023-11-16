@@ -15,6 +15,7 @@
 Bool_t AtTPC20MgDecay::Init()
 {
    // Initialize generatorTH1F*h1 = new TH1F("h1", "h1", 1000,0,11236.8);
+   gRandom->SetSeed(12345); // Seed
    return true;
 }
 

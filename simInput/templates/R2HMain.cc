@@ -111,4 +111,3 @@ void usage()
 {
    std::cout << "Usage: ./R2HExe fileToConvert" << std::endl;
 }
-
