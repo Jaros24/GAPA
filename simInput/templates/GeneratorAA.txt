@@ -15,13 +15,15 @@
 Bool_t AtTPC20MgDecay::Init()
 {
    // Initialize generator
-   gRandom->SetSeed(12345); // Seed
    return true;
 }
 
 // -----   Public method ReadEvent   --------------------------------------
 Bool_t AtTPC20MgDecay::ReadEvent(FairPrimaryGenerator *primGen)
 {
+   srand((unsigned)time(NULL));
+   UInt_t seed=(float)rand() / RAND_MAX * 1000000;
+   gRandom->SetSeed(seed); // Seed
    if (fBoxVtxIsSet) {
       fX = gRandom->Uniform(fX1, fX2);
       fY = gRandom->Uniform(fY1, fY2);
