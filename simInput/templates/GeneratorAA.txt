@@ -1,4 +1,4 @@
-#include "AtTPC20MgDecay.h"
+#include "AtTPC20MgDecay_pag.h"
 
 #include <FairLogger.h> // for Logger, LOG
 #include <FairPrimaryGenerator.h>
@@ -12,14 +12,14 @@
 #include <iostream> // for operator<<, endl, basic_ostream, cout
 #include <memory>   // for make_unique, unique_ptr
 
-Bool_t AtTPC20MgDecay::Init()
+Bool_t AtTPC20MgDecay_pag::Init()
 {
    // Initialize generator
    return true;
 }
 
 // -----   Public method ReadEvent   --------------------------------------
-Bool_t AtTPC20MgDecay::ReadEvent(FairPrimaryGenerator *primGen)
+Bool_t AtTPC20MgDecay_pag::ReadEvent(FairPrimaryGenerator *primGen)
 {
    srand((unsigned)time(NULL));
    UInt_t seed=(float)rand() / RAND_MAX * 1000000;
@@ -89,7 +89,7 @@ if(bra2<=1){
    return kTRUE;
 }
 
-void AtTPC20MgDecay::SetDecayChainPoint(Double32_t ParticleEnergy, Double32_t ParticleBranchingRatio)
+void AtTPC20MgDecay_pag::SetDecayChainPoint(Double32_t ParticleEnergy, Double32_t ParticleBranchingRatio)
 {
 	for(Int_t i =0; i<fParticlesDefinedInNuclearDecay;i++){
 		fParticleEnergies[i]=ParticleEnergy;
@@ -97,4 +97,4 @@ void AtTPC20MgDecay::SetDecayChainPoint(Double32_t ParticleEnergy, Double32_t Pa
 }
 }
 
-ClassImp(AtTPC20MgDecay)
+ClassImp(AtTPC20MgDecay_pag)

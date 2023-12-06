@@ -1,6 +1,6 @@
 #!/bin/bash
 
-debug=0 #"n" # set to y to enable debug mode
+debug="y" #"n" # set to y to enable debug mode
 
 # set paths for ATTPCROOT and Automation scripts
 automation_dir=$(dirname "$(readlink -f "$0")") # get parent directory of script
@@ -37,7 +37,7 @@ if [ ! -f $attpcroot_dir"build/Makefile" ]; then
     make install -j8
     cd $automation_dir
 
-    mkdir -p $attpcroot_dir"macro/Simulation/GADGET/data"
+    mkdir -p $attpcroot_dir"macro/Simulation/Charge_Dispersion/data"
 fi
 
 # check for if R2HMain is already built
@@ -117,10 +117,10 @@ while true; do
 
     else
         # MOVE QUEUED FILES TO SIMULATION FOLDER
-        mv -f $automation_dir"simInput/queue/Mg20_test_sim.C" $attpcroot_dir"macro/Simulation/GADGET/Mg20_test_sim.C"
-        mv -f $automation_dir"simInput/queue/rundigi_sim.C" $attpcroot_dir"macro/Simulation/GADGET/rundigi_sim.C"
+        mv -f $automation_dir"simInput/queue/Mg20_test_sim_pag.C" $attpcroot_dir"macro/Simulation/Charge_Dispersion/Mg20_test_sim_pag.C"
+        mv -f $automation_dir"simInput/queue/rundigi_sim_CD.C" $attpcroot_dir"macro/Simulation/Charge_Dispersion/rundigi_sim_CD.C"
         mv -f $automation_dir"simInput/queue/GADGET.sim.par" $attpcroot_dir"parameters/GADGET.sim.par"
-        mv -f $automation_dir"simInput/queue/AtTPC20MgDecay.cxx" $attpcroot_dir"AtGenerators/AtTPC20MgDecay.cxx"
+        mv -f $automation_dir"simInput/queue/AtTPC20MgDecay_pag.cxx" $attpcroot_dir"AtGenerators/AtTPC20MgDecay_pag.cxx"
         # Add more files as implimented in same format
         
         # check if ATTPCROOT needs to be rebuilt
@@ -133,27 +133,31 @@ while true; do
 
         # run simulation and digitization
         if [ $debug == "y" ]; then # debug mode, display output in terminal
+            cd $attpcroot_dir"macro/Simulation/Charge_Dispersion/"
             echo 'Mg20_test_sim.C'
-            root -l $attpcroot_dir"macro/Simulation/GADGET/Mg20_test_sim.C"
+            root -l Mg20_test_sim_pag.C
             echo 'rundigi_sim.C'
-            root -l $attpcroot_dir"macro/Simulation/GADGET/rundigi_sim.C"
+            root -l rundigi_sim_CD.C
+            cd $automation_dir
         else # normal mode, hide output
+            cd $attpcroot_dir"macro/Simulation/Charge_Dispersion/"
             echo 'Mg20_test_sim.C'
-            nohup root -b -l $attpcroot_dir"macro/Simulation/GADGET/Mg20_test_sim.C" &
+            nohup root -b -l Mg20_test_sim_pag.C &
             pid1=$!
             wait $pid1
             echo 'rundigi_sim.C'
-            nohup root -b -l $attpcroot_dir"macro/Simulation/GADGET/rundigi_sim.C" &
+            nohup root -b -l rundigi_sim_CD.C &
             pid2=$!
             wait $pid2
         fi
         
         # convert root files to h5
-        echo "Converting root files to h5"
+        # echo "Converting root files to h5"
         # bad fix to solve location of output_digi.root
-        mv $automation_dir"output_digi.root" $attpcroot_dir"macro/Simulation/GADGET/data/output_digi.root"
-        $attpcroot_dir"compiled/ROOT2HDF/build/R2HExe" $attpcroot_dir"macro/Simulation/GADGET/data/output_digi.root"
-        mv $automation_dir"output.h5" $automation_dir"simOutput/output.h5"
+        # mv $automation_dir"output_digi.root" $attpcroot_dir"macro/Simulation/Charge_Dispersion/data/output_digi.root"
+        # $attpcroot_dir"compiled/ROOT2HDF/build/R2HExe" $attpcroot_dir"macro/Simulation/Charge_Dispersion/data/output_digi.root"
+        # mv $automation_dir"output.h5" $automation_dir"simOutput/output.h5"
+        mv $attpcroot_dir"macro/Simulation/Charge_Dispersion/data/output.h5" $automation_dir"simOutput/output.h5"
         ((iterations++))
     fi
 

@@ -1,3 +1,4 @@
-Sim,Status,N,P0,E0,P1,E1,Xb,Yb,Zb1,Zb2,Threshold,CoefL,CoefT
-debug-800p,0,30,p,800.0,a,0.0,0.0,0.0,10,40,20,0.000101,0.00175
-debug2-800p,0,30,p,800.0,a,0.0,0.0,0.0,10,40,20,.00015,.0022
+Sim,Status,N,P0,E0,P1,E1
+debug1,0,40,p,1200,a,500
+debug2,0,50,p,800,a,500
+debug3,0,60,p,1200,a,1000

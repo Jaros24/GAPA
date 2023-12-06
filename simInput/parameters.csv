@@ -1,2 +1,4 @@
-Sim,Status,P0,E0,P1,E1
-barebones,0,p,800,a,0
+Sim,Status,N,P0,E0,P1,E1
+debug1,2,40,p,1200,a,500
+debug2,2,50,p,800,a,500
+debug3,2,60,p,1200,a,1000
