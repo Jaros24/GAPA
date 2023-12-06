@@ -1,6 +1,6 @@
 #!/bin/bash
 
-debug="y" #"n" # set to y to enable debug mode
+debug=0 #"n" # set to y to enable debug mode
 
 # set paths for ATTPCROOT and Automation scripts
 automation_dir=$(dirname "$(readlink -f "$0")") # get parent directory of script
@@ -84,20 +84,21 @@ fi
 
 
 # load prerequisites for ATTPCROOT
+echo "Loading prerequisites"
 source $attpcroot_dir"env_fishtank.sh"
 module load fairroot/18.6.3
 
 # send updated R2HMain.cc and R2HMain.hh to ATTPCROOT (have fix for trace and event data not present in stock version)
-cp -f $automation_dir"simInput/templates/R2HMain.cc" $attpcroot_dir"compiled/ROOT2HDF/R2HMain.cc"
-cp -f $automation_dir"simInput/templates/R2HMain.hh" $attpcroot_dir"compiled/ROOT2HDF/R2HMain.hh"
+#cp -f $automation_dir"simInput/templates/R2HMain.cc" $attpcroot_dir"compiled/ROOT2HDF/R2HMain.cc"
+#cp -f $automation_dir"simInput/templates/R2HMain.hh" $attpcroot_dir"compiled/ROOT2HDF/R2HMain.hh"
 
 # start timer
+echo "Starting simulation loop"
 start=`date +%s`
 iterations=0
 
 # run simulation loop
 while true; do
-
     # tuning if needed
     if [ $tuning == "y" ]; then
         # run tuning simulation
@@ -149,18 +150,12 @@ while true; do
             nohup root -b -l rundigi_sim_CD.C &
             pid2=$!
             wait $pid2
+            cd $automation_dir
         fi
         
-        # convert root files to h5
-        # echo "Converting root files to h5"
-        # bad fix to solve location of output_digi.root
-        # mv $automation_dir"output_digi.root" $attpcroot_dir"macro/Simulation/Charge_Dispersion/data/output_digi.root"
-        # $attpcroot_dir"compiled/ROOT2HDF/build/R2HExe" $attpcroot_dir"macro/Simulation/Charge_Dispersion/data/output_digi.root"
-        # mv $automation_dir"output.h5" $automation_dir"simOutput/output.h5"
         mv $attpcroot_dir"macro/Simulation/Charge_Dispersion/data/output.h5" $automation_dir"simOutput/output.h5"
         ((iterations++))
     fi
-
 done
 
 end=`date +%s`

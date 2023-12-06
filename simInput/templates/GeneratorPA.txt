@@ -21,6 +21,10 @@ AtTPC20MgDecay_pag::AtTPC20MgDecay_pag()
 
 Bool_t AtTPC20MgDecay_pag::Init()
 {
+   srand((unsigned)time(NULL));
+   UInt_t seed=(float)rand() / RAND_MAX * 1000000;
+   gRandom->SetSeed(seed); // Seed
+
    // Initialize generator
    return true;
 }
@@ -28,11 +32,6 @@ Bool_t AtTPC20MgDecay_pag::Init()
 // -----   Public method ReadEvent   --------------------------------------
 Bool_t AtTPC20MgDecay_pag::ReadEvent(FairPrimaryGenerator *primGen)
 {
-   // Had to disable due to weird issue, fix later
-   // srand((unsigned)time(NULL));
-   // UInt_t seed=(float)rand() / RAND_MAX * 1000000;
-   // gRandom->SetSeed(seed); // Seed
-
    if (fBoxVtxIsSet) {
       fX = gRandom->Uniform(fX1, fX2);
       fY = gRandom->Uniform(fY1, fY2);
