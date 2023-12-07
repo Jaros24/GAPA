@@ -43,7 +43,7 @@ void rundigi_sim_CD(
 
 auto pulseImp = std::make_shared<AtPulseGADGET>(mapping);
    auto *pulse = new AtPulseTask(pulseImp);
-   pulseImp->SetAdjecentPads(2);
+   pulseImp->SetAdjecentPads(2); // Charge Dispersion
    pulse->SetPersistence(kTRUE);
    pulse->SetSaveMCInfo();
    pulseImp->SetSaveCharge(kTRUE);
