@@ -122,6 +122,7 @@ while true; do
         mv -f $automation_dir"simInput/queue/rundigi_sim_CD.C" $attpcroot_dir"macro/Simulation/Charge_Dispersion/rundigi_sim_CD.C"
         mv -f $automation_dir"simInput/queue/GADGET.sim.par" $attpcroot_dir"parameters/GADGET.sim.par"
         mv -f $automation_dir"simInput/queue/AtTPC20MgDecay_pag.cxx" $attpcroot_dir"AtGenerators/AtTPC20MgDecay_pag.cxx"
+        mv -f $automation_dir"simInput/queue/AtPulseGADGET.h" $attpcroot_dir"AtDigitization/AtPulseGADGET.h"
         # Add more files as implimented in same format
         
         # check if ATTPCROOT needs to be rebuilt
