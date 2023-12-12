@@ -57,6 +57,7 @@ python3 $automation_dir"simInput/nb2py.py" $automation_dir"simInput/iter-params.
 python3 $automation_dir"simInput/nb2py.py" $automation_dir"simInput/create-params.ipynb"
 python3 $automation_dir"simInput/nb2py.py" $automation_dir"simInput/tuning-params.ipynb"
 python3 $automation_dir"simInput/nb2py.py" $automation_dir"simInput/tuning-view.ipynb"
+python3 $automation_dir"simInput/nb2py.py" $automation_dir"simInput/h5-to-img.ipynb"
 
 if [ $tuning == "y" ]; then
     echo "Tuning simulation"
@@ -175,8 +176,9 @@ rm -f $automation_dir"nohup.out"
 cp -f $automation_dir"simInput/parameters.csv" $automation_dir"simOutput/parameters.csv"
 
 # convert h5 files into images
-#echo "Converting h5 files to images"
-#python3 $automation_dir"simInput/h5-to-img.py" $automation_dir"simOutput/"
+echo "Producing images from h5 files"
+python3 $automation_dir"simInput/h5-to-img.py" $automation_dir
+rm -f $automation_dir"simInput/h5-to-img.py"
 
 # zip simOutput, named with date and time
 #zip -r $automation_dir"simOutput/$(date +%Y-%m-%d_%H-%M-%S).zip" $automation_dir"simOutput/"
