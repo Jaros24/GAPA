@@ -49,7 +49,7 @@ auto pulseImp = std::make_shared<AtPulseGADGET>(mapping);
    pulseImp->SetSaveCharge(kTRUE);
 
    auto psa = std::make_unique<AtPSAMax>();
-   psa->SetThreshold(5); // Threshold
+   psa->SetThreshold(20); // Threshold
 
    AtPSAtask *psaTask = new AtPSAtask(std::move(psa));
    psaTask->SetPersistence(kTRUE);

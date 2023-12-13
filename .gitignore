@@ -3,6 +3,7 @@ simOutput/hdf5/*
 simOutput/images/*
 simOutput/aug_images/*
 simOutput/*
+log.log
 
 # ignore temporary files produced by the simulation
 simInput/queue/*
@@ -11,4 +12,4 @@ simInput/create-params.py
 simInput/tuning-params.py
 simInput/tuning-view.py
 nohup.out
-simInput/h5-to-img.py"
+simInput/h5-to-img.py
