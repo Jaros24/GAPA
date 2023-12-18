@@ -1,11 +1,19 @@
-# Don't track the outputs of the simulation
+# Output of Simulation
 simOutput/hdf5/*
 simOutput/images/*
-simOutput/aug_images/*
 simOutput/*
+
+# ATTPCROOT build logs
 log.log
 
-# ignore temporary files produced by the simulation
+# Padplane_manipulation.ipynb applied to simOutput/images
+simOutput/aug_images/*
+
+# Analysis created by img_analysis.ipynb
+Analysis/sim_data.csv
+Analysis/event_data.csv
+
+# Temporary files
 simInput/queue/*
 simInput/iter-params.py
 simInput/create-params.py
