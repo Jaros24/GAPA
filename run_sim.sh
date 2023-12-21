@@ -101,7 +101,7 @@ python3 $automation_dir"simInput/nb2py.py" $automation_dir"simInput/tuning-view.
 python3 $automation_dir"simInput/nb2py.py" $automation_dir"simInput/h5-to-img.ipynb"
 
 
-if var_params == "y"; then # run create-params.py if needed
+if [ $var_params == "y" ]; then # run create-params.py if needed
     echo "Parameter variation script"
     python3 $automation_dir"simInput/create-params.py" $automation_dir
 fi
@@ -150,11 +150,11 @@ while true; do
         # check if ATTPCROOT needs to be rebuilt
         if [ -f $automation_dir"BUILD.csv" ]; then
             if [ $debug_log == "y" ]; then
-                echo "ATTPCROOT needs to be rebuilt"
+                echo "Rebuilding ATTPCROOT"
                 rm $automation_dir"BUILD.csv"
                 make -C $attpcroot_dir"build/" -j8
             else
-                echo -ne "\r\e[0KATTPCROOT needs to be rebuilt"
+                echo -ne "\r\e[0KRebuilding ATTPCROOT"
                 rm $automation_dir"BUILD.csv"
                 make -C $attpcroot_dir"build/" -j8 &>> $automation_dir"log.log"
             fi
@@ -202,10 +202,11 @@ runtime=$((end-start))
 echo "$iterations simulations completed in $runtime seconds"
 
 # clean up files
-rm -f $automation_dir"simInput/iter-params.py"
 rm -f $automation_dir"simInput/create-params.py"
 rm -f $automation_dir"simInput/tuning-params.py"
 rm -f $automation_dir"simInput/tuning-view.py"
+rm -f $automation_dir"simInput/queue-sim.py"
+rm -f $automation_dir"simInput/process-sim.py"
 rm -f $automation_dir"nohup.out"
 
 # copy parameters.csv to simOutput

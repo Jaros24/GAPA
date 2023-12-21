@@ -15,7 +15,8 @@ Analysis/event_data.csv
 
 # Temporary files
 simInput/queue/*
-simInput/iter-params.py
+simInput/queue-sim.py
+simInput/process-sim.py
 simInput/create-params.py
 simInput/tuning-params.py
 simInput/tuning-view.py
