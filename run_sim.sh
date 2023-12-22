@@ -98,7 +98,6 @@ python3 $automation_dir"simInput/nb2py.py" $automation_dir"simInput/process-sim.
 python3 $automation_dir"simInput/nb2py.py" $automation_dir"simInput/create-params.ipynb"
 python3 $automation_dir"simInput/nb2py.py" $automation_dir"simInput/tuning-params.ipynb"
 python3 $automation_dir"simInput/nb2py.py" $automation_dir"simInput/tuning-view.ipynb"
-python3 $automation_dir"simInput/nb2py.py" $automation_dir"simInput/h5-to-img.ipynb"
 
 
 if [ $var_params == "y" ]; then # run create-params.py if needed
@@ -216,10 +215,6 @@ cp -f $automation_dir"simInput/parameters.csv" $automation_dir"simOutput/paramet
 if [ -f $automation_dir"simInput/queue/parameters.csv" ]; then
     mv -f $automation_dir"simInput/queue/parameters.csv" $automation_dir"simInput/parameters.csv"
 fi
-
-# convert h5 files into images
-python3 $automation_dir"simInput/h5-to-img.py" $automation_dir
-rm -f $automation_dir"simInput/h5-to-img.py"
 
 # zip simOutput folder
 cd $automation_dir"simOutput/"
