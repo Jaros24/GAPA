@@ -43,13 +43,13 @@ void rundigi_sim_CD(
 
 auto pulseImp = std::make_shared<AtPulseGADGET>(mapping);
    auto *pulse = new AtPulseTask(pulseImp);
-   pulseImp->SetAdjecentPads(2); // Charge Dispersion
+   pulseImp->SetAdjecentPads(1); // Charge Dispersion
    pulse->SetPersistence(kTRUE);
    pulse->SetSaveMCInfo();
    pulseImp->SetSaveCharge(kTRUE);
 
    auto psa = std::make_unique<AtPSAMax>();
-   psa->SetThreshold(20); // Threshold
+   psa->SetThreshold(100); // Threshold
 
    AtPSAtask *psaTask = new AtPSAtask(std::move(psa));
    psaTask->SetPersistence(kTRUE);

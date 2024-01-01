@@ -21,7 +21,7 @@ class AtSimulatedPoint;
 class AtPulseGADGET : public AtPulse {
 
 private:
-   Int_t AdjecentPads = 2; // CDH
+   Int_t AdjecentPads = 1; // CDH
    Int_t Items = 2 * AdjecentPads + 1;
    Double_t R = 10.0e6;        // Resistance (ohms)
    Double_t C = 2.8e-7;        // Capacitance[C] (Farad)

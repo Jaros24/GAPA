@@ -96,8 +96,7 @@ fi
 python3 $automation_dir"simInput/nb2py.py" $automation_dir"simInput/queue-sim.ipynb"
 python3 $automation_dir"simInput/nb2py.py" $automation_dir"simInput/process-sim.ipynb"
 python3 $automation_dir"simInput/nb2py.py" $automation_dir"simInput/create-params.ipynb"
-python3 $automation_dir"simInput/nb2py.py" $automation_dir"simInput/tuning-params.ipynb"
-python3 $automation_dir"simInput/nb2py.py" $automation_dir"simInput/tuning-view.ipynb"
+python3 $automation_dir"simInput/nb2py.py" $automation_dir"simInput/tuning.ipynb"
 
 
 if [ $var_params == "y" ]; then # run create-params.py if needed
@@ -126,8 +125,7 @@ iterations=0
 while true; do
     # tuning if needed
     if [ $tuning == "y" ]; then # tuning mode
-        python3 $automation_dir"simInput/tuning-params.py" $automation_dir $attpcroot_dir $iterations
-        python3 $automation_dir"simInput/tuning-view.py"
+        python3 $automation_dir"simInput/tuning.py" $automation_dir $attpcroot_dir $iterations 2> $automation_dir"log.log"
     fi
     
 	# queue new simulation parameters or break loop
@@ -202,10 +200,9 @@ echo "$iterations simulations completed in $runtime seconds"
 
 # clean up files
 rm -f $automation_dir"simInput/create-params.py"
-rm -f $automation_dir"simInput/tuning-params.py"
-rm -f $automation_dir"simInput/tuning-view.py"
 rm -f $automation_dir"simInput/queue-sim.py"
 rm -f $automation_dir"simInput/process-sim.py"
+rm -f $automation_dir"simInput/tuning.py"
 rm -f $automation_dir"nohup.out"
 
 # copy parameters.csv to simOutput
