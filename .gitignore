@@ -18,7 +18,6 @@ simInput/queue/*
 simInput/queue-sim.py
 simInput/process-sim.py
 simInput/create-params.py
-simInput/tuning-params.py
-simInput/tuning-view.py
+simInput/tuning.py
 nohup.out
 simInput/h5-to-img.py

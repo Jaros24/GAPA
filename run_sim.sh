@@ -125,7 +125,7 @@ iterations=0
 while true; do
     # tuning if needed
     if [ $tuning == "y" ]; then # tuning mode
-        python3 $automation_dir"simInput/tuning.py" $automation_dir $attpcroot_dir $iterations 2> $automation_dir"log.log"
+        python3 $automation_dir"simInput/tuning.py" $automation_dir $attpcroot_dir $iterations # 2> $automation_dir"log.log"
     fi
     
 	# queue new simulation parameters or break loop

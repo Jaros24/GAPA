@@ -1,0 +1,44 @@
+{
+    "Parameters": {
+        "Threshold": 100
+    },
+    "Gradient": {
+        "Threshold": 10.0
+    },
+    "N": 100,
+    "Seed": 2,
+    "TuningParticles": [
+        "1682p"
+    ],
+    "LearningRate": 0.1,
+    "TestJump": 0.1,
+    "IntParams": [
+        "Threshold",
+        "Gain",
+        "GETGain",
+        "PeakingTime"
+    ],
+    "ZeroEnergy": 0.001,
+    "Batch": 0,
+    "VarParam": "Threshold",
+    "VarPType": "1682p",
+    "TargetAttributes": {
+        "1682p": {
+            "Energy": 1681.356058300092,
+            "Length": 17.080347938033803,
+            "Width": 3.713166346776102,
+            "NumPads": 69.51979134703898,
+            "NumPeaks": 3.4436943847806076,
+            "MaxPad": 72.97939687239933,
+            "MinPad": 4.706311179004133,
+            "AvgPad": 26.378799391887725,
+            "NumNoise": 0.16814973918379872,
+            "TraceWidth": 41.11936176741332,
+            "TraceMax": 70.41289855935044,
+            "TraceAvg": 42.97954894453611,
+            "TracePeaks": 1.260816201288739,
+            "TrackLength": 18.88560913418937,
+            "TrackPeaks": 3.4081006443694384
+        }
+    }
+}
