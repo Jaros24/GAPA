@@ -22,13 +22,14 @@ Simulation and Analysis Automation for GADGET 2
 Set P1,E1 to a,0 for no secondary particle
 
 ### Optional Parameters
-- N : number of events to simulate per h5, default 100
-- Threshold : pad theshold, default 20
+- N : number of events to simulate per h5, default int 100
+- Threshold : pad theshold, default int 20
 - Seed : random seed for simulation, default 0. Set 0 for random, other integer for specified seed
 - Xb : x bounds for origin of event, default 2
+    - Set to 99 to artificially raise detector efficiency by placing event origins on opposite side of detector from their direction of travel.
 - Yb: y bounds for origin of event, default 2
 - Zb1 : lower z bound for origin of event, default 10
 - Zb2 : upper z bound for origin of event, default 40
-- CD : Charge Dispersion adjacent pads, default 2 (rundigi_sim_CD instance)
+- CD : Charge Dispersion adjacent pads, default int 2 (rundigi_sim_CD instance)
 - CDH : Charge Dispersion adjacent pads (header version), defaults to CD if that is specified, or 2 if not
 - ANY PARAMETER LOCATED IN GADGET.sim.par, see simInput/templates for default values

@@ -45,7 +45,7 @@ Bool_t AtTPC20MgDecay_pag::ReadEvent(FairPrimaryGenerator *primGen)
    }
 
    // Proton of 1210keV and alpha of 506keV
-   Int_t protonPDGID = 2212;
+   Int_t protonPDGID = 2212; 
    Int_t alphaPDGID = 1000020040;
    Int_t gammaPDGID = 22;
    Int_t betaPDGID = 11; // NOLINT
@@ -131,6 +131,11 @@ Bool_t AtTPC20MgDecay_pag::ReadEvent(FairPrimaryGenerator *primGen)
       primGen->AddTrack(22, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); // dummy photon for track ID 0
       if (brp <= 1) {
          {
+            Double32_t fX = -1 * TMath::Cos(phiProton) * 2; // Efficiency Fix
+            Double32_t fY = -1 * TMath::Sin(phiProton) * 2; // Efficiency Fix
+            // Above lines move origin of event such that P0 travels towards
+            // center of detector, improving efficiency of large energy events
+
             primGen->AddTrack(protonPDGID, pxProton, pyProton, pzProton, fX, fY, fZ);
          }
          if (bra <= 1) {
