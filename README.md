@@ -2,9 +2,9 @@
 Simulation and Analysis Automation for GADGET 2
 
 ## Simulation Instructions and Requirements
-1. Install ATTPCROOTv2 (https://github.com/ATTPC/ATTPCROOTv2) commit b7dd09ae in parent directory
-2. run the command ./run_sim.sh
-3. follow prompts for desired simulation type, will automatically run and output h5 files to simOutput/hdf5/
+- Run the command ./run_sim.sh with flags specifying the type of simulation that you want to run
+- Will automatically download and install ATTPCROOTv2 to run simulations
+- Meant to run on FRIB's fishtank, tested to work on flagtail and steelhead
 
 ## Analysis
 - done with jupyter notebooks, although could be made into python scripts if needed

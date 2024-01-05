@@ -11,28 +11,11 @@ automation_dir=$(dirname "$(readlink -f "$0")") # get parent directory of script
 automation_dir=$(readlink -f "$automation_dir" | sed 's:\([^/]\)$:\1/:') # add trailing slash if not present
 rm -f $automation_dir"log.log" # remove old log file if present
 
-# test for ATTPCROOT in same directory as automation script
-attpcroot_dir="$automation_dir/../ATTPCROOTv2" # set ATTPCROOT path relative to script location
-attpcroot_dir=$(readlink -f "$attpcroot_dir")
-attpcroot_dir="${attpcroot_dir%/GADGET2/..}"
-
-# check if ATTPCROOT directory exists and contains env_fishtank.sh
-if [ ! -d "$attpcroot_dir" ] || [ ! -f "$attpcroot_dir/env_fishtank.sh" ]; then
-    read -p "Enter full ATTPCROOT directory: " attpcroot_dir
-    attpcroot_dir=$(readlink -f "$attpcroot_dir" | sed 's:\([^/]\)$:\1/:') # add trailing slash if not present
-    if [ ! -d "$attpcroot_dir" ] || [ ! -f "$attpcroot_dir/env_fishtank.sh" ]; then
-        echo "specified ATTPCROOT directory is invalid"
-        exit 1
-    fi
-else
-    attpcroot_dir=$(readlink -f "$attpcroot_dir" | sed 's:\([^/]\)$:\1/:') # add trailing slash if not present
-fi
-
 # parse command line arguments for options
-while getopts "htvildc" option; do
+while getopts "htvildca" option; do
     case ${option} in
         h ) # display help
-            echo "Usage: run_sim.sh [-h][-t][-v][-i][-l][-d]"
+            echo "Usage: run_sim.sh [-flags]"
             echo "  -t  run simulation in tuning mode"
             echo "  -v  generate parameters with variation script"
             echo "  -i  limit number of iterations for testing"
@@ -40,6 +23,7 @@ while getopts "htvildc" option; do
             echo "  -d  reset parameter file for debugging"
             echo "  -c  clean output before running"
             echo "  -h  display help message"
+            echo "  -a  force reset of ATTPCROOT"
             echo "See documentation on GitHub for more information"
             echo "https://github.com/Jaros24/GADGET2"
             exit 0
@@ -75,31 +59,72 @@ while getopts "htvildc" option; do
             mkdir -p $automation_dir"simOutput/gifs/events/"
             mkdir -p $automation_dir"simOutput/aug_images/"
             ;;
+        a ) # force reset of ATTPCROOT
+            echo "ATTPCROOT will be rebuilt"
+            rm -rf $automation_dir"Sims/"
+            mkdir -p $automation_dir"Sims/"
+            ;;
         \? ) # invalid option
             echo "Invalid option: -$OPTARG" 1>&2
             exit 1
             ;;
-
     esac
 done
 
+# check for ATTPCROOT installed in Sims directory, download if not
+if [ ! -f $automation_dir"Sims/ATTPCROOTv2/env_fishtank.sh" ]; then
+    mkdir -p $automation_dir"Sims/"
+    cd $automation_dir"Sims/"
+    echo "Downloading ATTPCROOT"
+    if [ $debug_log == "y" ]; then
+        git clone https://github.com/ATTPC/ATTPCROOTv2
+        git checkout 40699a2 # use specific version that has been tested
+        rm -rf .git # remove git files to prevent conflicts
+    else
+        git clone https://github.com/ATTPC/ATTPCROOTv2 &>> $automation_dir"log.log"
+        git checkout 40699a2 &>> $automation_dir"log.log"
+        rm -rf .git &>> $automation_dir"log.log"
+    fi
+    cd $automation_dir
+    attpcroot_dir=$automation_dir"Sims/ATTPCROOTv2/"
+else # ATTPCROOT already installed
+    attpcroot_dir=$automation_dir"Sims/ATTPCROOTv2/"
+fi
+
 source $attpcroot_dir"env_fishtank.sh"
-# check for if ATTPCROOT is already built, if not build it
+
+# build ATTPCROOT if needed
 if [ ! -f $attpcroot_dir"build/Makefile" ]; then
     echo "ATTPCROOT not setup, building"
-    source $attpcroot_dir"env_fishtank.sh"
-    mkdir -p $attpcroot_dir"build"
-    cd $attpcroot_dir"build"
-    # directories for fairroot and fairsoft are hardcoded, change if needed
-    if debug_log == "y"; then
-        cmake -DCMAKE_PREFIX_PATH=/mnt/simulations/attpcroot/fair_install_18.6.3/ -DCMAKE_INSTALL_PATH=/mnt/misc/sw/x86_64/all/gnu/gcc/9.3.0/bin/gcc-9.3/ ../
-        make install -j8
+    # steps pulled from ATTPCROOTv2 installation wiki page
+    cd $attpcroot_dir
+    source env_fishtank.sh
+    mkdir build
+    cd build
+    if [ $debug_log == "y" ]; then
+        cmake -DCMAKE_PREFIX_PATH=/mnt/simulations/attpcroot/fair_install_18.6/ ../
+        make install -j 4
+        source config.sh
+
+        cd $attpcroot_dir"geometry/"
+        root -l GADGET_II.C
     else
-        cmake -DCMAKE_PREFIX_PATH=/mnt/simulations/attpcroot/fair_install_18.6.3/ -DCMAKE_INSTALL_PATH=/mnt/misc/sw/x86_64/all/gnu/gcc/9.3.0/bin/gcc-9.3/ ../ >> $automation_dir"log.log"
-        make install -j8 >> $automation_dir"log.log"
+        echo -ne "\r\e[0KCMake"
+        cmake -DCMAKE_PREFIX_PATH=/mnt/simulations/attpcroot/fair_install_18.6/ ../ &>> $automation_dir"log.log"
+        echo -ne "\r\e[0KMake"
+        make install -j 4 &>> $automation_dir"log.log"
+        echo -ne "\r\e[0K"
+        source config.sh &>> $automation_dir"log.log"
+
+        cd $attpcroot_dir"geometry/"
+        echo -ne "\r\e[0Kbuilding geometry"
+        nohup root -b -l GADGET_II.C &>> $automation_dir"log.log"
+        pid1=$!
+        wait $pid1
     fi
     cd $automation_dir
     mkdir -p $attpcroot_dir"macro/Simulation/Charge_Dispersion/data"
+    echo "ATTPCROOT built"
 fi
 
 # convert ipynb to py
@@ -108,6 +133,7 @@ python3 $automation_dir"simInput/nb2py.py" $automation_dir"simInput/process-sim.
 python3 $automation_dir"simInput/nb2py.py" $automation_dir"simInput/create-params.ipynb"
 python3 $automation_dir"simInput/nb2py.py" $automation_dir"simInput/tuning.ipynb"
 
+mkdir -p $automation_dir"Sims/queue/" # make file queue directory if needed
 
 if [ $var_params == "y" ]; then # run create-params.py if needed
     echo "Parameter variation script"
@@ -120,7 +146,7 @@ if [ ! -f $automation_dir"simInput/parameters.csv" ]; then # test for parameters
 fi
 
 if [ $reset_params == "y" ]; then # backup parameters.csv for debugging
-    cp $automation_dir"simInput/parameters.csv" $automation_dir"simInput/queue/parameters.csv"
+    cp $automation_dir"simInput/parameters.csv" $automation_dir"Sims/queue/parameters.csv"
 fi
 
 # load prerequisites for ATTPCROOT
@@ -148,11 +174,11 @@ while true; do
     else
         echo -n "Running simulation"
         # MOVE QUEUED FILES TO SIMULATION FOLDER
-        mv -f $automation_dir"simInput/queue/Mg20_test_sim_pag.C" $attpcroot_dir"macro/Simulation/Charge_Dispersion/Mg20_test_sim_pag.C"
-        mv -f $automation_dir"simInput/queue/rundigi_sim_CD.C" $attpcroot_dir"macro/Simulation/Charge_Dispersion/rundigi_sim_CD.C"
-        mv -f $automation_dir"simInput/queue/GADGET.sim.par" $attpcroot_dir"parameters/GADGET.sim.par"
-        mv -f $automation_dir"simInput/queue/AtTPC20MgDecay_pag.cxx" $attpcroot_dir"AtGenerators/AtTPC20MgDecay_pag.cxx"
-        mv -f $automation_dir"simInput/queue/AtPulseGADGET.h" $attpcroot_dir"AtDigitization/AtPulseGADGET.h"
+        cp -f $automation_dir"Sims/queue/Mg20_test_sim_pag.C" $attpcroot_dir"macro/Simulation/Charge_Dispersion/Mg20_test_sim_pag.C"
+        cp -f $automation_dir"Sims/queue/rundigi_sim_CD.C" $attpcroot_dir"macro/Simulation/Charge_Dispersion/rundigi_sim_CD.C"
+        cp -f $automation_dir"Sims/queue/GADGET.sim.par" $attpcroot_dir"parameters/GADGET.sim.par"
+        cp -f $automation_dir"Sims/queue/AtTPC20MgDecay_pag.cxx" $attpcroot_dir"AtGenerators/AtTPC20MgDecay_pag.cxx"
+        cp -f $automation_dir"Sims/queue/AtPulseGADGET.h" $attpcroot_dir"AtDigitization/AtPulseGADGET.h"
         
         # check if ATTPCROOT needs to be rebuilt
         if [ -f $automation_dir"BUILD.csv" ]; then
@@ -219,8 +245,8 @@ rm -f $automation_dir"nohup.out"
 cp -f $automation_dir"simInput/parameters.csv" $automation_dir"simOutput/parameters.csv"
 
 # move queued parameters.csv to simInput if it exists (for -d option)
-if [ -f $automation_dir"simInput/queue/parameters.csv" ]; then
-    mv -f $automation_dir"simInput/queue/parameters.csv" $automation_dir"simInput/parameters.csv"
+if [ -f $automation_dir"Sims/queue/parameters.csv" ]; then
+    mv -f $automation_dir"Sims/queue/parameters.csv" $automation_dir"simInput/parameters.csv"
 fi
 
 # zip simOutput folder

@@ -21,3 +21,6 @@ simInput/create-params.py
 simInput/tuning.py
 nohup.out
 simInput/h5-to-img.py
+
+# ATTPCROOT files
+Sims/*
