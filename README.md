@@ -15,9 +15,9 @@ Simulation and Analysis Automation for GADGET 2
 ### Essential Values:
 - Sim : simulation Name, output h5 will be named this
 - Status : status of the simulation, set to 0 to queue. will automatically change to 1 for in progress, 2 for completed.
-- P0 : main particle type (p for proton, a for alpha)
+- P0 : main particle type (use name or abbreviation of particle, or pdgid number)
 - E0 : energy (in keV) of main particle
-- P1 : secondary particle type
+- P1 : secondary particle type (add '-' before to specify 180° relative angle with P0)
 - E1 : secondary particle energy
 Set P1,E1 to a,0 for no secondary particle
 

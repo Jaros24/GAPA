@@ -1,2 +1,2 @@
-Sim,Status,E0,P0,E1,P1,N,Xb
-OriginTest,0,1600,p,0.001,a,200,99
+Sim,Status,E0,P0,E1,P1,N,Xb,Yb
+ParticleTest,0,1000,p,1000,-p,20,0,0

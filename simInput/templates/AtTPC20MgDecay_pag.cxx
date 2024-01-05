@@ -45,8 +45,8 @@ Bool_t AtTPC20MgDecay_pag::ReadEvent(FairPrimaryGenerator *primGen)
    }
 
    // Proton of 1210keV and alpha of 506keV
-   Int_t protonPDGID = 2212; 
-   Int_t alphaPDGID = 1000020040;
+   Int_t protonPDGID = 2212; // P0
+   Int_t alphaPDGID = 1000020040; // P1
    Int_t gammaPDGID = 22;
    Int_t betaPDGID = 11; // NOLINT
    // Check for particle type
@@ -71,7 +71,7 @@ Bool_t AtTPC20MgDecay_pag::ReadEvent(FairPrimaryGenerator *primGen)
 
    Double32_t ptProton = 0, pxProton = 0, pyProton = 0, pzProton = 0;
    // Double32_t pabsProton = 0.0470; // GeV/c
-   Double32_t pabsProton = 0.0763; // P0 E0
+   Double32_t pabsProton = 0.0763; // E0
    Double32_t thetaProton = acos(gRandom->Uniform(-1, 1));
    Double32_t brp = 0;
    Double32_t phiProton = gRandom->Uniform(0, 360) * TMath::DegToRad();
@@ -82,14 +82,14 @@ Bool_t AtTPC20MgDecay_pag::ReadEvent(FairPrimaryGenerator *primGen)
 
    Double32_t ptAlpha = 0, pxAlpha = 0, pyAlpha = 0, pzAlpha = 0;
    Double32_t bra = 0;
-   Double32_t pabsAlpha = 0.06162; // P1 E1
-   Double32_t thetaAlpha = acos(gRandom->Uniform(-1, 1));
+   Double32_t pabsAlpha = 0.06162; // E1
+   Double32_t thetaAlpha = acos(gRandom->Uniform(-1, 1)); 
    Double32_t phiAlpha = gRandom->Uniform(0, 360) * TMath::DegToRad();
-   pzAlpha = pabsAlpha * TMath::Cos(thetaAlpha);
-   ptAlpha = pabsAlpha * TMath::Sin(thetaAlpha);
-   pxAlpha = ptAlpha * TMath::Cos(phiAlpha);
-   pyAlpha = ptAlpha * TMath::Sin(phiAlpha);
-
+   pzAlpha = pabsAlpha * TMath::Cos(thetaAlpha); // b2b
+   ptAlpha = pabsAlpha * TMath::Sin(thetaAlpha); // b2b
+   pxAlpha = ptAlpha * TMath::Cos(phiAlpha); // b2b
+   pyAlpha = ptAlpha * TMath::Sin(phiAlpha); // b2b
+   
    Double32_t ptGamma = 0, pxGamma = 0, pyGamma = 0, pzGamma = 0; // NOLINT
    Double32_t pabsGamma = 0.004033;                               // GeV/c
    // Double32_t brg=0;
@@ -102,8 +102,8 @@ Bool_t AtTPC20MgDecay_pag::ReadEvent(FairPrimaryGenerator *primGen)
 
    if (fNuclearDecayChainIsSet) {
 
-      if (protonPDGID != 2212)
-         LOG(fatal) << "AtTPC20MgDecay_pagGenerator:PDG code" << protonPDGID << "is not a proton!";
+      // if (protonPDGID != 2212)
+      //    LOG(fatal) << "AtTPC20MgDecay_pagGenerator:PDG code" << protonPDGID << "is not a proton!";
       // if(protonPDGID == 2212)
       brp = gRandom->Uniform(0, 1);
       bra = gRandom->Uniform(0, 1);
@@ -128,18 +128,17 @@ Bool_t AtTPC20MgDecay_pag::ReadEvent(FairPrimaryGenerator *primGen)
          }
       }
 
+      Double32_t fX = -1 * TMath::Cos(phiProton) * 2; // Efficiency Fix
+      Double32_t fY = -1 * TMath::Sin(phiProton) * 2; // Efficiency Fix
+      // Move origin of event such that P 0 travels towards center of detector
+      // improving efficiency of large energy events
+
       primGen->AddTrack(22, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); // dummy photon for track ID 0
       if (brp <= 1) {
          {
-            Double32_t fX = -1 * TMath::Cos(phiProton) * 2; // Efficiency Fix
-            Double32_t fY = -1 * TMath::Sin(phiProton) * 2; // Efficiency Fix
-            // Above lines move origin of event such that P0 travels towards
-            // center of detector, improving efficiency of large energy events
-
             primGen->AddTrack(protonPDGID, pxProton, pyProton, pzProton, fX, fY, fZ);
          }
          if (bra <= 1) {
-            // if(bra1<=1){
             primGen->AddTrack(alphaPDGID, pxAlpha, pyAlpha, pzAlpha, fX, fY, fZ);
          }
       }

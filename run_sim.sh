@@ -6,8 +6,30 @@ iter_limit=0 # -i option
 var_params=0 # -v option
 reset_params=0 # -d option
 
+# set paths for ATTPCROOT and Automation scripts
+automation_dir=$(dirname "$(readlink -f "$0")") # get parent directory of script
+automation_dir=$(readlink -f "$automation_dir" | sed 's:\([^/]\)$:\1/:') # add trailing slash if not present
+rm -f $automation_dir"log.log" # remove old log file if present
+
+# test for ATTPCROOT in same directory as automation script
+attpcroot_dir="$automation_dir/../ATTPCROOTv2" # set ATTPCROOT path relative to script location
+attpcroot_dir=$(readlink -f "$attpcroot_dir")
+attpcroot_dir="${attpcroot_dir%/GADGET2/..}"
+
+# check if ATTPCROOT directory exists and contains env_fishtank.sh
+if [ ! -d "$attpcroot_dir" ] || [ ! -f "$attpcroot_dir/env_fishtank.sh" ]; then
+    read -p "Enter full ATTPCROOT directory: " attpcroot_dir
+    attpcroot_dir=$(readlink -f "$attpcroot_dir" | sed 's:\([^/]\)$:\1/:') # add trailing slash if not present
+    if [ ! -d "$attpcroot_dir" ] || [ ! -f "$attpcroot_dir/env_fishtank.sh" ]; then
+        echo "specified ATTPCROOT directory is invalid"
+        exit 1
+    fi
+else
+    attpcroot_dir=$(readlink -f "$attpcroot_dir" | sed 's:\([^/]\)$:\1/:') # add trailing slash if not present
+fi
+
 # parse command line arguments for options
-while getopts "htvild" option; do
+while getopts "htvildc" option; do
     case ${option} in
         h ) # display help
             echo "Usage: run_sim.sh [-h][-t][-v][-i][-l][-d]"
@@ -16,6 +38,7 @@ while getopts "htvild" option; do
             echo "  -i  limit number of iterations for testing"
             echo "  -l  display full logs in terminal"
             echo "  -d  reset parameter file for debugging"
+            echo "  -c  clean output before running"
             echo "  -h  display help message"
             echo "See documentation on GitHub for more information"
             echo "https://github.com/Jaros24/GADGET2"
@@ -42,6 +65,16 @@ while getopts "htvild" option; do
             echo "parameters.csv will be reset at end of loop"
             reset_params="y"
             ;;
+        c ) # clean output before running
+            echo "cleaning output"
+            rm -rf $automation_dir"simOutput/"
+            mkdir -p $automation_dir"simOutput/"
+            mkdir -p $automation_dir"simOutput/hdf5/"
+            mkdir -p $automation_dir"simOutput/images/"
+            mkdir -p $automation_dir"simOutput/gifs/"
+            mkdir -p $automation_dir"simOutput/gifs/events/"
+            mkdir -p $automation_dir"simOutput/aug_images/"
+            ;;
         \? ) # invalid option
             echo "Invalid option: -$OPTARG" 1>&2
             exit 1
@@ -49,29 +82,6 @@ while getopts "htvild" option; do
 
     esac
 done
-
-
-# set paths for ATTPCROOT and Automation scripts
-automation_dir=$(dirname "$(readlink -f "$0")") # get parent directory of script
-automation_dir=$(readlink -f "$automation_dir" | sed 's:\([^/]\)$:\1/:') # add trailing slash if not present
-rm -f $automation_dir"log.log" # remove old log file if present
-
-# test for ATTPCROOT in same directory as automation script
-attpcroot_dir="$automation_dir/../ATTPCROOTv2" # set ATTPCROOT path relative to script location
-attpcroot_dir=$(readlink -f "$attpcroot_dir")
-attpcroot_dir="${attpcroot_dir%/GADGET2/..}"
-
-# check if ATTPCROOT directory exists and contains env_fishtank.sh
-if [ ! -d "$attpcroot_dir" ] || [ ! -f "$attpcroot_dir/env_fishtank.sh" ]; then
-    read -p "Enter full ATTPCROOT directory: " attpcroot_dir
-    attpcroot_dir=$(readlink -f "$attpcroot_dir" | sed 's:\([^/]\)$:\1/:') # add trailing slash if not present
-    if [ ! -d "$attpcroot_dir" ] || [ ! -f "$attpcroot_dir/env_fishtank.sh" ]; then
-        echo "specified ATTPCROOT directory is invalid"
-        exit 1
-    fi
-else
-    attpcroot_dir=$(readlink -f "$attpcroot_dir" | sed 's:\([^/]\)$:\1/:') # add trailing slash if not present
-fi
 
 source $attpcroot_dir"env_fishtank.sh"
 # check for if ATTPCROOT is already built, if not build it
