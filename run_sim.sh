@@ -78,10 +78,12 @@ if [ ! -f $automation_dir"Sims/ATTPCROOTv2/env_fishtank.sh" ]; then
     echo "Downloading ATTPCROOT"
     if [ $debug_log == "y" ]; then
         git clone https://github.com/ATTPC/ATTPCROOTv2
+        cd ATTPCROOTv2
         git checkout 40699a2 # use specific version that has been tested
         rm -rf .git # remove git files to prevent conflicts
     else
         git clone https://github.com/ATTPC/ATTPCROOTv2 &>> $automation_dir"log.log"
+        cd ATTPCROOTv2
         git checkout 40699a2 &>> $automation_dir"log.log"
         rm -rf .git &>> $automation_dir"log.log"
     fi
