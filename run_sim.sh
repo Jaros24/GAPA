@@ -95,6 +95,9 @@ if [ $multi == "y" ]; then
         # not worth implementing
         exit 1
     fi
+    # prompt user for number of simulators
+    echo "Enter number of simulators to use"
+    read num_simulators
 fi
 
 python3 $automation_dir"simInput/nb2py.py" $automation_dir"simInput/create-params.ipynb"
@@ -116,9 +119,6 @@ start=`date +%s`
 echo "Starting simulations at `date`"
 
 if [ $multi == "y" ]; then
-    # prompt user for number of simulators
-    echo "Enter number of simulators to use"
-    read num_simulators
     # run multi-threaded simulation script
     python3 $automation_dir"simInput/nb2py.py" $automation_dir"simInput/multi-sim.ipynb"
     python3 $automation_dir"simInput/multi-sim.py" $automation_dir $num_simulators
