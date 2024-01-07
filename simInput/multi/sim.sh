@@ -56,8 +56,20 @@ while true; do
         rm $automation_dir"STOP.tmp"
         exit 0
     fi
+
     # build ATTPCROOT and run simulation
     make -C $attpcroot_dir"build/" -j8
+    
+    if [ -f "geo.temp" ]; then
+        # update geometry if geo.temp exists
+        rm "geo.temp"
+        cd $attpcroot_dir"geometry/"
+        nohup root -b -l GADGET_II.C
+        pid1=$!
+        wait $pid1
+        cd $automation_dir
+    fi
+    
     cd $attpcroot_dir"macro/Simulation/Charge_Dispersion/"
     echo "Running simulation (Mg20_test_sim_pag.C)"
     nohup root -b -l Mg20_test_sim_pag.C

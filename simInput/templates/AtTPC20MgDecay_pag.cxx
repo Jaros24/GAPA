@@ -128,8 +128,8 @@ Bool_t AtTPC20MgDecay_pag::ReadEvent(FairPrimaryGenerator *primGen)
          }
       }
 
-      Double32_t fX = -1 * TMath::Cos(phiProton) * 2; // Efficiency Fix
-      Double32_t fY = -1 * TMath::Sin(phiProton) * 2; // Efficiency Fix
+      Double32_t fX = -1 * TMath::Cos(phiProton) * fY2; // Efficiency Fix
+      Double32_t fY = -1 * TMath::Sin(phiProton) * fY2; // Efficiency Fix
       // Move origin of event such that P 0 travels towards center of detector
       // improving efficiency of large energy events
 

@@ -28,9 +28,12 @@ Set P1,E1 to a,0 for no secondary particle
 - Xb : x bounds for origin of event, default 2
     - Set to 99 to artificially raise detector efficiency by placing event origins on opposite side of detector from their direction of travel.
 - Yb: y bounds for origin of event, default 2
+    - controls origin radius if Xb = 99
 - Zb1 : lower z bound for origin of event, default 10
 - Zb2 : upper z bound for origin of event, default 40
 - CD : Charge Dispersion adjacent pads, default int 2 (rundigi_sim_CD instance)
     - Add 'a' after number to use approximation function for slight performance improvement
 - CDH : Charge Dispersion adjacent pads (header version), defaults to CD if that is specified, or 2 if not
+- MediumGas : Gas medium inside detector, default is 'GADGET_5IsoAr_800'
+    - Can specify any compositions (including custom ones) in simInput/templates/media.geo
 - ANY PARAMETER LOCATED IN GADGET.sim.par, see simInput/templates for default values
