@@ -13,21 +13,24 @@ automation_dir=$(readlink -f "$automation_dir" | sed 's:\([^/]\)$:\1/:') # add t
 rm -f $automation_dir"log.log" # remove old log file if present
 
 # parse command line arguments for options
-while getopts "htvildcam" option; do
+while getopts "htvildcam:" option; do
     case ${option} in
         h ) # display help
+            echo "    GADGET2 ATTPCROOT Automation Script"
+            echo "Developed by Adam Jaros as part of the FRIB's E21072 under Dr. Chris Wrede"
+            echo "See documentation on the project's GitHub page for more information"
+            echo "https://github.com/Jaros24/GADGET2"
+            echo ""
             echo "Usage: run_sim.sh [-flags]"
             echo "  -t  run simulation in tuning mode"
             echo "  -v  generate parameters with variation script"
-            echo "  -i  limit number of iterations for testing"
-            echo "  -m  run simulation multi-threaded"
+            echo "  -m4  run simulation multi-threaded, specify number of simulators with integer"           
+            echo "  -c  clean simOutput before running"
             echo "  -l  display full logs in terminal"
-            echo "  -d  reset parameter file for debugging"
-            echo "  -c  clean output before running"
-            echo "  -h  display help message"
             echo "  -a  force reset of ATTPCROOT"
-            echo "See documentation on GitHub for more information"
-            echo "https://github.com/Jaros24/GADGET2"
+            echo "  -d  reset parameter file for testing"
+            echo "  -i  limit number of iterations for testing"
+            echo "  -h  display help message"
             exit 0
             ;;
         t ) # run simulation in tuning mode
@@ -69,7 +72,8 @@ while getopts "htvildcam" option; do
             ;;
         m ) # run simulation multi-threaded
             multi="y"
-            echo "multi-threaded mode enabled"
+            num_simulators="${OPTARG}"
+            echo "running multi-threaded with $num_simulators simulators"
             ;;
         \? ) # invalid option
             echo "Invalid option: -$OPTARG" 1>&2
@@ -95,9 +99,6 @@ if [ $multi == "y" ]; then
         # not worth implementing
         exit 1
     fi
-    # prompt user for number of simulators
-    echo "Enter number of simulators to use"
-    read num_simulators
 fi
 
 python3 $automation_dir"simInput/nb2py.py" $automation_dir"simInput/create-params.ipynb"
@@ -105,6 +106,7 @@ if [ $var_params == "y" ]; then # run create-params.py if needed
     echo "Parameter variation script"
     python3 $automation_dir"simInput/create-params.py" $automation_dir
 fi
+rm -f $automation_dir"simInput/create-params.py"
 
 if [ ! -f $automation_dir"simInput/parameters.csv" ]; then # test for parameters.csv
     echo "parameters.csv not found in simInput"
@@ -292,7 +294,6 @@ echo "$iterations simulations completed in $runtime seconds"
 
 
 # clean up files
-rm -f $automation_dir"simInput/create-params.py"
 rm -f $automation_dir"simInput/queue-sim.py"
 rm -f $automation_dir"simInput/process-sim.py"
 rm -f $automation_dir"simInput/tuning.py"
