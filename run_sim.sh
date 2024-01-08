@@ -95,8 +95,11 @@ if [ $var_params == "y" ]; then # run create-params.py if needed"
 fi
 
 if [ ! -f $automation_dir"parameters.csv" ]; then # test for parameters.csv
-    echo "parameters.csv not found"
-    exit 1
+    if [ $tuning != "y" ]; then
+        echo "parameters.csv not found"
+        echo "If this is your first time, run with -h flag for help"
+        exit 1
+    fi
 fi
 
 if [ $reset_params == "y" ]; then # backup parameters.csv for debugging
@@ -142,6 +145,8 @@ cp -f $automation_dir"parameters.csv" $automation_dir"Output/parameters.csv"
 if [ $reset_params == "y" ]; then # restore parameters.csv
     mv $automation_dir".input/parameters.bak" $automation_dir"parameters.csv"
 fi
+
+touch $automation_dir".sims/STOP.tmp" # create master STOP.tmp
 
 # zip simOutput folder
 cd $automation_dir"Output/"
