@@ -11,7 +11,7 @@ tuning=0
 reset_params=0
 var_params=0
 
-while getopts "htvildcam:" option; do
+while getopts "htvdcakm:" option; do
     case ${option} in
         h ) # display help
             echo "    GADGET2 ATTPCROOT Automation Script"
@@ -26,6 +26,7 @@ while getopts "htvildcam:" option; do
             echo "  -c   clean Output before running"
             echo "  -a   force reset of Simulators"
             echo "  -d   reset parameter file for testing"
+            echo "  -k   kill all running simulators"
             echo "  -h   display this help message"
             exit 0
             ;;
@@ -47,6 +48,12 @@ while getopts "htvildcam:" option; do
         a ) # force reset of ATTPCROOT
             echo "Resetting Simulators..."
             rm -rf $automation_dir".sims/"
+            ;;
+        k ) # kill all running simulators and exit (safety feature)
+            echo "Killing all running simulators..."
+            killall -i simGADGET.sh
+            rm -rf $automation_dir".sims/"
+            exit 0
             ;;
         m ) # specify number of simulators
             num_simulators="${OPTARG}"
@@ -106,6 +113,9 @@ if [ ! -d $automation_dir"Output/" ]; then # create Output directory if needed
     mkdir -p $automation_dir"Output/aug_images/"
 fi
 
+if [ $tuning == "y" ]; then
+    python3 $automation_dir".input/nb2py.py" $automation_dir".input/tuning.ipynb"
+fi
 #####################################
 ######### RUN SIMULATIONS ###########
 
@@ -114,14 +124,14 @@ echo "Starting simulations at `date`"
 
 # run simulations managed by python scripts
 python3 $automation_dir".input/nb2py.py" $automation_dir".input/simManager.ipynb"
-python3 $automation_dir".input/simManager.py" $automation_dir $num_simulators
+python3 $automation_dir".input/simManager.py" $automation_dir $num_simulators $tuning
 
 
 #####################################
 ######### CLEAN UP SIMULATIONS ######
 
 rm -f $automation_dir".input/simManager.py"
-rm -f $automation_dir".input/status.csv"
+rm -f $automation_dir"status.csv"
 cp -f $automation_dir"parameters.csv" $automation_dir"Output/parameters.csv"
 
 if [ $reset_params == "y" ]; then # restore parameters.csv

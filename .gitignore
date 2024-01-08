@@ -1,8 +1,9 @@
 # Output of Simulation
-Output/*
+Output/
 
 # Simulator files
-.sims/*
+.sims/
+status.csv
 
 # Temporary / Utility files
 *.tmp
@@ -16,3 +17,8 @@ Output/*
 .input/create-params.py
 .input/sim/process.py
 .input/sim/queue.py
+
+# tuning files
+Analysis/.real/
+AttributesLog.csv
+tuning_log.json
