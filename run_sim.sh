@@ -14,7 +14,7 @@ var_params=0
 while getopts "htvdcakm:" option; do
     case ${option} in
         h ) # display help
-            echo "    GADGET2 ATTPCROOT Automation Script"
+            echo "    GADGET2 ATTPCROOT Parameters Automation"
             echo "Developed by Adam Jaros as part of the FRIB's E21072 under Dr. Chris Wrede"
             echo "See documentation on the project's GitHub page for more information"
             echo "https://github.com/Jaros24/GADGET2"
@@ -49,15 +49,13 @@ while getopts "htvdcakm:" option; do
             echo "Resetting Simulators..."
             rm -rf $automation_dir".sims/"
             ;;
-        k ) # kill all running simulators and exit (safety feature)
-            echo "Killing all running simulators..."
-            killall -i simGADGET.sh
-            rm -rf $automation_dir".sims/"
+        k ) # stop all running simulators
+            echo "Stopping all running simulators..."
+            touch $automation_dir".sims/STOP.tmp"
             exit 0
             ;;
         m ) # specify number of simulators
             num_simulators="${OPTARG}"
-            echo "Running with $num_simulators simulators"
             ;;
         \? ) # invalid option
             echo "Invalid option: -$OPTARG" 1>&2
@@ -109,6 +107,8 @@ if [ ! -d $automation_dir".sims/" ]; then # create Sims directory if needed
     mkdir -p $automation_dir".sims/"
 fi
 
+rm -f $automation_dir".sims/STOP.tmp" # remove master STOP.tmp if present
+
 if [ ! -d $automation_dir"Output/" ]; then # create Output directory if needed
     mkdir -p $automation_dir"Output/"
     mkdir -p $automation_dir"Output/hdf5/"
@@ -131,7 +131,6 @@ echo "Starting simulations at `date`"
 python3 $automation_dir".input/nb2py.py" $automation_dir".input/simManager.ipynb"
 python3 $automation_dir".input/simManager.py" $automation_dir $num_simulators $tuning
 
-
 #####################################
 ######### CLEAN UP SIMULATIONS ######
 
@@ -146,7 +145,7 @@ fi
 
 # zip simOutput folder
 cd $automation_dir"Output/"
-zip -r output.zip * >> /dev/null 
+zip -r output.zip * >> /dev/null &
 cd $automation_dir
 
 end=`date +%s`

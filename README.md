@@ -1,15 +1,11 @@
-# GADGET2
-Simulation and Analysis Automation for GADGET 2
+# GADGET2 ATTPCROOT Parameters Automation
+Developed by Adam Jaros as part of the FRIB's E21072 under Dr. Chris Wrede
 
 ## Simulation Instructions and Requirements
-- Run the command ./run_sim.sh with flags specifying the type of simulation that you want to run
+- Run the command run_sim.sh with flags specifying the type of simulation that you want to run
+    - flag -h to view the list of options
 - Will automatically download and install ATTPCROOTv2 to run simulations
 - Meant to run on FRIB's fishtank, tested to work on flagtail and steelhead
-
-## Analysis
-- done with jupyter notebooks, although could be made into python scripts if needed
-- traces.ipynb produces images for visual analysis
-- numerical.ipynb analyzes h5 files for numerical trends
 
 ## Manual Parameter file generation
 ### Essential Values:
