@@ -87,8 +87,13 @@ fi
 
 if [ $var_params == "y" ]; then # run create-params.py if needed"
     python3 $automation_dir".input/nb2py.py" $automation_dir".input/create-params.ipynb"
-    python3 $automation_dir".input/create-params.py" $automation_dir
-    rm -f $automation_dir".input/create-params.py"
+    python3 $automation_dir".input/create-params.py" $automation_dir 1
+    if [ $? -ne 0 ]; then # if create-params.py fails, exit script
+        echo "Parameter Variation Cancelled"
+        rm -f $automation_dir".input/create-params.py"
+        exit 1
+    fi
+    rm -f $automation_dir".input/create-params.py" 
 fi
 
 if [ ! -f $automation_dir"parameters.csv" ]; then # test for parameters.csv
@@ -132,6 +137,7 @@ python3 $automation_dir".input/simManager.py" $automation_dir $num_simulators $t
 
 rm -f $automation_dir".input/simManager.py"
 rm -f $automation_dir"status.csv"
+rm -f $automation_dir".input/tuning.py"
 cp -f $automation_dir"parameters.csv" $automation_dir"Output/parameters.csv"
 
 if [ $reset_params == "y" ]; then # restore parameters.csv
