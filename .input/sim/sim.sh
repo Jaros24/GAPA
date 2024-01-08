@@ -4,10 +4,18 @@
 automation_dir=$(dirname "$(readlink -f "$0")") # get parent directory of script
 automation_dir=$(readlink -f "$automation_dir" | sed 's:\([^/]\)$:\1/:') # add trailing slash if not present
 
-touch $automation_dir"STARTING.tmp" # create STARTING.tmp file to indicate script is running
+# define functions
+status_file () {
+    # remove all tmp files and create new one
+    rm -f *.tmp
+    touch $1
+}
+
+status_file "STARTING.tmp"
 
 # check for ATTPCROOT installed in same directory, download if not
 if [ ! -f $automation_dir"ATTPCROOTv2/env_fishtank.sh" ]; then
+    status_file "DOWNLOADING.tmp"
     git clone https://github.com/ATTPC/ATTPCROOTv2
     cd ATTPCROOTv2
     git checkout 40699a2
@@ -22,6 +30,7 @@ source $attpcroot_dir"env_fishtank.sh"
 
 if [ ! -f $attpcroot_dir"build/Makefile" ]; then
     # steps pulled from ATTPCROOTv2 installation wiki page
+    status_file "INSTALLING.tmp"
     cd $attpcroot_dir
     source env_fishtank.sh
     mkdir build
@@ -51,18 +60,19 @@ mkdir -p $automation_dir"out/gifs"
 while true; do
 	# queue new simulation parameters or break loop
 	python3 $automation_dir"queue.py" $automation_dir $attpcroot_dir
+
     if [ -f $automation_dir"STOP.tmp" ]; then
-        # Delete STOP.csv and break loop
-        rm $automation_dir"STOP.tmp"
+        status_file "STOPPED.tmp"
         exit 0
     fi
-
+    
     # build ATTPCROOT and run simulation
     make -C $attpcroot_dir"build/" -j8
     
     if [ -f "geo.temp" ]; then
         # update geometry if geo.temp exists
         rm "geo.temp"
+        status_file "GEOMETRY.tmp"
         cd $attpcroot_dir"geometry/"
         nohup root -b -l GADGET_II.C
         pid1=$!
@@ -70,17 +80,20 @@ while true; do
         cd $automation_dir
     fi
     
+    status_file "Sim.tmp"
     cd $attpcroot_dir"macro/Simulation/Charge_Dispersion/"
     echo "Running simulation (Mg20_test_sim_pag.C)"
     nohup root -b -l Mg20_test_sim_pag.C
     pid1=$!
     wait $pid1
-    echo "Running simulation (rundigi_sim_CD.C)"
+    cd $automation_dir
+    status_file "RUNDIGI.tmp"
+    cd $attpcroot_dir"macro/Simulation/Charge_Dispersion/"
     nohup root -b -l rundigi_sim_CD.C
     pid2=$!
     wait $pid2
     cd $automation_dir
     mv $attpcroot_dir"macro/Simulation/Charge_Dispersion/data/output.h5" $automation_dir"out/output.h5"
-    echo "Processing simulation output"
+    
     python3 $automation_dir"process.py" $automation_dir $attpcroot_dir
 done

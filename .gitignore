@@ -1,30 +1,18 @@
 # Output of Simulation
-simOutput/hdf5/*
-simOutput/images/*
-simOutput/*
+Output/*
 
-# Padplane_manipulation.ipynb applied to simOutput/images
-simOutput/aug_images/*
+# Simulator files
+.sims/*
 
-# Analysis created by img_analysis.ipynb
-Analysis/sim_data.csv
-Analysis/event_data.csv
-
-# Temporary files
-simInput/queue/*
-simInput/queue-sim.py
-simInput/process-sim.py
-simInput/create-params.py
-simInput/tuning.py
-nohup.out
-simInput/h5-to-img.py
-simInput/status.csv
-simInput/multi-sim.py
-
-# ATTPCROOT files
-Sims/*
-
-# Other temporary / utility files
+# Temporary / Utility files
 *.tmp
+*.temp
 *.bak
 *.log
+
+# Input python files
+.input/simManager.py
+.input/tuning.py
+.input/create-params.py
+.input/sim/process.py
+.input/sim/queue.py
