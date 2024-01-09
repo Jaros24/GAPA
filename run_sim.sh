@@ -10,8 +10,9 @@ num_simulators=4
 tuning=0
 reset_params=0
 var_params=0
+premade=0
 
-while getopts "htvdcakm:" option; do
+while getopts "htvdcakm:p" option; do
     case ${option} in
         h ) # display help
             echo "    GADGET2 ATTPCROOT Parameters Automation"
@@ -22,7 +23,8 @@ while getopts "htvdcakm:" option; do
             echo "Usage: run_sim.sh [-flags]"
             echo "  -t   run tuning mode"
             echo "  -v   generate parameters with variation script"
-            echo "  -m#  specify number of simulators (1 - 10)"       
+            echo "  -m#  specify number of simulators (1 - 10)"
+            echo "  -p   premade tuning / var file"
             echo "  -c   clean Output before running"
             echo "  -a   force reset of Simulators"
             echo "  -d   reset parameter file for testing"
@@ -57,6 +59,9 @@ while getopts "htvdcakm:" option; do
         m ) # specify number of simulators
             num_simulators="${OPTARG}"
             ;;
+        p ) # premade tuning / var file
+            premade="y"
+            ;;
         \? ) # invalid option
             echo "Invalid option: -$OPTARG" 1>&2
             exit 1
@@ -85,7 +90,7 @@ fi
 
 if [ $var_params == "y" ]; then # run create-params.py if needed"
     python3 $automation_dir".input/nb2py.py" $automation_dir".input/create-params.ipynb"
-    python3 $automation_dir".input/create-params.py" $automation_dir 1
+    python3 $automation_dir".input/create-params.py" $automation_dir $premade
     if [ $? -ne 0 ]; then # if create-params.py fails, exit script
         echo "Parameter Variation Cancelled"
         rm -f $automation_dir".input/create-params.py"
@@ -132,7 +137,7 @@ echo "Starting simulations at `date`"
 
 # run simulations managed by python scripts
 python3 $automation_dir".input/nb2py.py" $automation_dir".input/simManager.ipynb"
-python3 $automation_dir".input/simManager.py" $automation_dir $num_simulators $tuning
+python3 $automation_dir".input/simManager.py" $automation_dir $num_simulators $tuning $premade
 
 #####################################
 ######### CLEAN UP SIMULATIONS ######
