@@ -6,6 +6,8 @@ Output/
 status.csv
 
 # Temporary / Utility files
+ParameterVariation.json
+parameters.csv
 *.tmp
 *.temp
 *.bak
