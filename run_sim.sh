@@ -117,14 +117,12 @@ fi
 
 rm -f $automation_dir".sims/STOP.tmp" # remove master STOP.tmp if present
 
-if [ ! -d $automation_dir"Output/" ]; then # create Output directory if needed
-    mkdir -p $automation_dir"Output/"
-    mkdir -p $automation_dir"Output/hdf5/"
-    mkdir -p $automation_dir"Output/images/"
-    mkdir -p $automation_dir"Output/gifs/"
-    mkdir -p $automation_dir"Output/gifs/events/"
-    mkdir -p $automation_dir"Output/aug_images/"
-fi
+# setup Output directories
+mkdir -p $automation_dir"Output/hdf5/"
+mkdir -p $automation_dir"Output/images/"
+mkdir -p $automation_dir"Output/gifs/"
+mkdir -p $automation_dir"Output/gifs/events/"
+mkdir -p $automation_dir"Output/aug_images/"
 
 if [ $tuning == "y" ]; then
     python3 $automation_dir".input/nb2py.py" $automation_dir".input/tuning.ipynb"
@@ -160,5 +158,5 @@ cd $automation_dir
 
 end=`date +%s`
 runtime=$((end-start))
-echo "Finished simulations at `date`"
+echo "Finished simulations at `date` "
 echo "Total runtime: $runtime seconds"
