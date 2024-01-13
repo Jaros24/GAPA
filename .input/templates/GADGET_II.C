@@ -29,7 +29,7 @@ const TString FileName1 = geoVersion + "_geomanager.root";
 
 // Names of the different materials which are used to build the modules
 // The materials are defined in the global media.geo file
-const TString MediumGas = "GADGET_5IsoAr_800";
+const TString MediumGas = "GADGET_P10_800";
 const TString CylinderVolumeMedium = "steel";
 const TString MediumVacuum = "vacuum4";
 const TString WindowMedium = "kapton";
@@ -144,7 +144,7 @@ void create_materials_from_media_file()
    FairGeoMedia *geoMedia = geoFace->getMedia();
    FairGeoBuilder *geoBuild = geoLoad->getGeoBuilder();
 
-   FairGeoMedium *GADGET_5IsoAr_800 = geoMedia->getMedium("GADGET_5IsoAr_800");
+   FairGeoMedium *GADGET_P10_800 = geoMedia->getMedium("GADGET_P10_800");
    FairGeoMedium *steel = geoMedia->getMedium("steel");
    FairGeoMedium *vacuum4 = geoMedia->getMedium("vacuum4");
    FairGeoMedium *kapton = geoMedia->getMedium("kapton");
@@ -152,7 +152,7 @@ void create_materials_from_media_file()
 
    // include check if all media are found
 
-   geoBuild->createMedium(GADGET_5IsoAr_800);
+   geoBuild->createMedium(GADGET_P10_800);
    geoBuild->createMedium(steel);
    ;
    geoBuild->createMedium(vacuum4);
