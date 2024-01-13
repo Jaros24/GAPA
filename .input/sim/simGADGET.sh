@@ -61,6 +61,8 @@ mkdir -p $automation_dir"out/hdf5"
 mkdir -p $automation_dir"out/images"
 mkdir -p $automation_dir"out/gifs"
 
+touch $automation_dir"geo.temp" # always update geometry on first run
+
 # SIMULATION LOOP 
 while true; do
 	# queue new simulation parameters or break loop
