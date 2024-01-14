@@ -26,3 +26,8 @@ Analysis/.real/
 AttributesLog.csv
 tuning_log.json
 tuning_view.png
+
+# Analysis files
+Analysis/h5 event summary.csv
+Analysis/event_data.csv
+Analysis/sim_data.csv
