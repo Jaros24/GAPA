@@ -12,6 +12,7 @@ parameters.csv
 *.temp
 *.bak
 *.log
+*.json
 
 # Input python files
 .input/simManager.py
@@ -24,3 +25,4 @@ parameters.csv
 Analysis/.real/
 AttributesLog.csv
 tuning_log.json
+tuning_view.png
