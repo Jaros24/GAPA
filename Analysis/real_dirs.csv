@@ -1,3 +1,17 @@
-ptype,dir
-806p,/mnt/analysis/e21072/h5test/run_0277/len90_ic600000_pads21_eps5_samps5_poly2/673876CUT_Date_12_20_2023/
-1682p,/mnt/analysis/e21072/h5test/run_0277/len90_ic600000_pads21_eps5_samps5_poly2/241372CUT_Date_12_20_2023/
+particle type,energy (kev),directory
+proton,806,/mnt/analysis/e21072/h5test/run_0277/len90_ic600000_pads21_eps5_samps5_poly2/673876CUT_Date_12_20_2023/
+proton,1682,/mnt/analysis/e21072/h5test/run_0277/len90_ic600000_pads21_eps5_samps5_poly2/241372CUT_Date_12_20_2023/
+proton,300," /mnt/analysis/e21072/h5test/run_0277/len90_ic600000_pads21_eps5_samps5_poly2/10482CUT_Date_01_16_2024"
+proton,1300," /mnt/analysis/e21072/h5test/run_0277/len90_ic600000_pads21_eps5_samps5_poly2/175753CUT_Date_01_16_2024"
+proton,2300," /mnt/analysis/e21072/h5test/run_0277/len90_ic600000_pads21_eps5_samps5_poly2/911006CUT_Date_01_17_2024"
+proton,3500," /mnt/analysis/e21072/h5test/run_0277/len90_ic600000_pads21_eps5_samps5_poly2/669260CUT_Date_01_17_2024"
+proton,4200," /mnt/analysis/e21072/h5test/run_0277/len90_ic600000_pads21_eps5_samps5_poly2/218630CUT_Date_01_17_2024"
+alpha-particle,4300," /mnt/analysis/e21072/h5test/run_0277/len90_ic600000_pads21_eps5_samps5_poly2/356754CUT_Date_01_17_2024"
+alpha-particle,5000," /mnt/analysis/e21072/h5test/run_0277/len90_ic600000_pads21_eps5_samps5_poly2/400458CUT_Date_01_17_2024"
+alpha-particle,5600," /mnt/analysis/e21072/h5test/run_0277/len90_ic600000_pads21_eps5_samps5_poly2/539180CUT_Date_01_17_2024"
+alpha-particle,6000," /mnt/analysis/e21072/h5test/run_0277/len90_ic600000_pads21_eps5_samps5_poly2/484439CUT_Date_01_17_2024"
+alpha-particle,6400," /mnt/analysis/e21072/h5test/run_0277/len90_ic600000_pads21_eps5_samps5_poly2/719220CUT_Date_01_17_2024"
+alpha-particle,7000,"/mnt/analysis/e21072/h5test/run_0277/len90_ic600000_pads21_eps5_samps5_poly2/115721CUT_Date_01_17_2024"
+alpha-particle,8000,"/mnt/analysis/e21072/h5test/run_0277/len90_ic600000_pads21_eps5_samps5_poly2/186692CUT_Date_01_17_2024"
+alpha-particle,8500,"/mnt/analysis/e21072/h5test/run_0277/len90_ic600000_pads21_eps5_samps5_poly2/900749CUT_Date_01_17_2024"
+
