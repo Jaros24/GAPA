@@ -13,6 +13,7 @@ parameters.csv
 *.bak
 *.log
 *.json
+*.pth
 
 # Input python files
 .input/simManager.py

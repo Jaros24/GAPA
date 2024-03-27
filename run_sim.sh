@@ -123,6 +123,7 @@ mkdir -p $automation_dir"Output/images/"
 mkdir -p $automation_dir"Output/gifs/"
 mkdir -p $automation_dir"Output/gifs/events/"
 mkdir -p $automation_dir"Output/aug_images/"
+mkdir -p $automation_dir"Analysis/Models/"
 
 if [ $tuning == "y" ]; then
     python3 $automation_dir".input/nb2py.py" $automation_dir".input/tuning.ipynb"
