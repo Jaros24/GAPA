@@ -109,4 +109,5 @@ while true; do
     mv $attpcroot_dir"macro/Simulation/Charge_Dispersion/data/output.h5" $automation_dir"out/output.h5"
     
     python3 $automation_dir"process.py" $automation_dir $attpcroot_dir
+    python3 $automation_dir"augment.py" $automation_dir $attpcroot_dir
 done
