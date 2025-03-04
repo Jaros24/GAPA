@@ -11,6 +11,7 @@ tuning=0
 reset_params=0
 var_params=0
 premade=0
+zip_output=0
 
 while getopts "htvdcakm:p" option; do
     case ${option} in
@@ -27,8 +28,9 @@ while getopts "htvdcakm:p" option; do
             echo "  -p   premade tuning / var file"
             echo "  -c   clean Output before running"
             echo "  -a   force reset of Simulators"
-            echo "  -d   reset parameter file for testing"
+            echo "  -d   reset parameter file for debugging"
             echo "  -k   kill all running simulators"
+            echo "  -z   zip output folder"
             echo "  -h   display this help message"
             exit 0
             ;;
@@ -61,6 +63,9 @@ while getopts "htvdcakm:p" option; do
             ;;
         p ) # premade tuning / var file
             premade="y"
+            ;;
+        z ) # zip output folder
+            zip_output="y"
             ;;
         \? ) # invalid option
             echo "Invalid option: -$OPTARG" 1>&2
@@ -148,14 +153,22 @@ cp -f $automation_dir"parameters.csv" $automation_dir"Output/parameters.csv"
 
 if [ $reset_params == "y" ]; then # restore parameters.csv
     mv $automation_dir".input/parameters.bak" $automation_dir"parameters.csv"
+
+    # read off sim0 log file for debugging
+    if [ -f $automation_dir".sims/0/log.log" ]; then
+        echo "sim0 log file:"
+        cat $automation_dir".sims/0/log.log"
+    fi
 fi
 
 touch $automation_dir".sims/STOP.tmp" # create master STOP.tmp
 
 # zip simOutput folder
-cd $automation_dir"Output/"
-zip -r output.zip * >> /dev/null &
-cd $automation_dir
+if [ $zip_output == "y" ]; then
+    cd $automation_dir"Output/"
+    zip -r output.zip *
+    cd $automation_dir
+fi
 
 end=`date +%s`
 runtime=$((end-start))
